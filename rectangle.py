@@ -1,13 +1,16 @@
 """ 
-This script will calculate the radius of a circle from their x, y axis and 
-use operator overloading to calculate the comparison of  values
-between circle_1 and circle_2
+Rectangle-specific logic, inherits Geometry
 """
 
-from rectangle import Rectangle
+from geometry import Geometry
 
-class Rectangle:
-    def __init__(self, x:int, y:int, height:int, width:int):
+class Rectangle(Geometry):
+    def __init__(self, width:int, height:int):
+        super().__init__(x,y)
+
+        # create instances unique to rectangle
+        self._width = width
+        self._height = height
         """
         Validation, check x, y and radius are integers
         """
@@ -15,27 +18,21 @@ class Rectangle:
             if not isinstance (x, int) or not (y, int) or not (radius, int):
                 raise TypeError("All values must be integer s")
             # store all attributes as objects
-            self.value = (x, y, height, width)
+            self.value = (x, y, width, height)
 
         except TypeError as e:
             print(f"Error {e}")
             raise # stop program if invalid inputs are used
 
-        # create instances
-        self._x = x
-        self._y = y
-        self._height = height
-        self._width = width
+        
     # -------------------------
     #        PROPERTY
     # --------------------------
+    @property
 
 
-
-
-# ---------------
-#     METHODS
-# ----------------
-
-    def area(self):
-    
+    # --------------------------
+    #         METHOD
+    # --------------------------
+    def width(self):
+        return self.width * self.height
