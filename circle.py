@@ -1,40 +1,75 @@
 """ 
-Circle-specific logic, inherits Geometry
-This script will calculate the radius of a circle from their x, y axis and 
-use operator overloading to calculate the comparison of  values
-between circle_1 and circle_2
+- Circle-specific pyscript, inherits Geometry
+- This class adds a radius attribute
+- Calculates area and perimeter using circle formulas
+- Can check if it's a unit circle (radius = 1)
+- Supports comparison operators for area (inherited from Geometry)
 """
 
 from geometry import Geometry
+from util import validate_number
+import math
 
 class Circle(Geometry):
-    def __init__(self, radius:float):
-        super().__init__(x,y)
+    """
+    Implements radius, area, and perimeter.
+    """
+    def __init__(self, x = 0, y = 0, radius:float = 1):
+        """
+        Validates that radius is a positive number with (validate_number from util).
+        Uses super().__init__() to reuse code from Geometry.
 
-        # create instances unique to circle
+        In math geometry, plotting starts at 0
+        x and y are set to 0
+        x and y can be set by user later with incrementation +=
+
+        radius set to 1 as default
+        no circle = 0 exists
+        """
+        super().__init__(x,y)
+        validate_number(radius)
         self._radius = radius
 
-        """
-        Validation, check x, y and radius are integers
-        """
-        try:
-            if not isinstance (x, int) or not (y, int) or not (radius, int):
-                raise TypeError("All values must be integer s")
-            # store all attributes as objects
-            self.value = (x, y, radius)
-
-        except TypeError as e:
-            print(f"Error {e}")
-            raise # stop program if invalid inputs are used
-
-
+        if radius <= 0:
+            # checks if radius is positive
+            raise ValueError("Radius must be positive number")
+        
     # -------------------------
     #        PROPERTY
     # -------------------------
     @property
+    def radius(self):
+        """ radius read-only, cannot change radius"""
+        return self._radius
+    
+    @property
+    def area(self):
+        """calcualtes area, formula:  π * r^2 """
+        return math.pi * self._radius ** 2
+    
+    @property
+    def perimeter(self):
+        """calcualtes perimeter (circumference), formula: 2 * π * r"""
+        return 2 * math.pi * self._radius
+
 
     # --------------------------
     #         METHOD
     # --------------------------
-    def area(self):
-        return math.pi * self.radius ** 2   
+    def is_unit_circle(self):
+        # if unit circle = True
+        """Checks if the circle is a unit circle."""
+        return self._radius == 1
+    
+    # --------------------------
+    #      REPRESENTATION
+    # --------------------------
+    
+    def __str__(self):
+        return f"Circle(radius={self._radius}, x={self.x}, y={self.y})"
+    
+    def __repr__(self):
+        return f"Circle\nradius = {self._radius}, x={self.x}, y={self.y})"
+    
+    
+

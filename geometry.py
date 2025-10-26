@@ -7,58 +7,122 @@ geometry_lab/
 ├── util.py             # Validation helpers
 ├── test_circle.py      # Unit tests
 ├── test_rectangle.py   # Unit tests
-└── explore_manual.ipynb  # Manual test notebook
+└── explorer.ipynb      # Manual test notebook
+
+Inheritance → Rectangle and Circle will share a parent class (Geometry).
+
+Polymorphism → Each shape has the same method names (area, perimeter) but works differently.
+
+Composition → A separate class that has shapes inside it (not inherits from them).
+
+Validation → Reuse the simple number validation from util.py.
 
 """
 import math
+from numbers import Number
+from util import validate_number
 
 class Geometry:
-    """
-    - Parent class for the lab 3. Contains x and y
-    - geometry parent class
-    - shared methods: position, translation
-    - x and y attributes shared by all shapes but has unique values
-    - __str__
-    - __repr__
+    """ 
+    parent class for all geometric shapes.
+    Stores the position (x, y) which has:
+    - how shapes can move (translate)
+    - how to compare shapes by their area
+    - how to print object info using __str__ and __repr__
 
     """
 
-    def __init__(self, x:int, y:int):
-        self.x = x
-        self.y = y
+    def __init__(self, x:float, y:float):
+        """
+        Create Geometry objects with x and y attributeas
+        Validate that value is a number using is instance and one line for loop
+        """
+        if not all (isinstance(value, Number) for value in (x,y)):
+            raise TypeError("x and y must be a number")
+        self._x = x
+        self._y = y
+
+# -------------------------
+#        PROPERTIES
+# -------------------------
+
+    # read only x property
+    @property
+    def x(self):
+        return self._x
+    
+    # read only y property
+    @property
+    def y(self):
+        return self._y
+
 
 # ---------------------------------
 #            METHODS
 #----------------------------------
-
-    # translate to move x and y???
-    def translate(self, dx:int, dy:int):
-        if not all(isinstance (i(int))for i in [dx, dy]):
-            raise TypeError("Translate values must be integers.")
-        self.x += dx
-        self.y += dy
-
     """
-    an operator overload of == to check equality
+    an operator overloads of comparison operator
+    to check the value comparisons between values.
+
+    AREA
     Geometry class contains the area comparison 
-    since areas are comparable regardless of formula
+    since areas are comparable regardless of shape
     """
+
+    def translate(self, dx:float, dy:float):
+        """
+        method to move x and y coordinates
+        depending on the value,
+        it is incremented x += dx and y += dy,
+        store those new coordinates in (dx, dy)
+        but not overwrties property _x and _y
+        """
+        if not all (isinstance(value, Number) for value in (dx, dy)):
+            raise TypeError("dx and dy must be a number")
+        self._x = dx
+        self._y = dy
+
+# ---------------------------------
+#         OPERATOR OVERLOAD
+#----------------------------------
+    """
+    Comparison Operators (==, <, <=, >, >=)
+
+    Comparison is based on the shape's area.
+    The area is defined separately in each child class
+    """
+
     def __eq__(self, value):
         if not isinstance(value, Geometry):
             return NotImplemented
         # used fot taking area for circle and rectangle
         return self.area == value.area
     
+    def __lt__(self, value):
+        return self.area < value.area
+    
+    def __le__(self, value):
+        return self.area <= value.area
+    
+    def __gt__(self,value):
+        return self.area > value.area
+    
+    def __ge__(self,value):
+        return self.area >= value.area 
+    
+    
+    # --------------------------
+    #      REPRESENTATION
+    # --------------------------
+    
     def __str__(self):
         """
-        an override of __str__()
         user-friendly string display
         """
-        return f"Geometry(parent class)\n(x = {self.x}, y = {self.y}"
+        return f"Geometry(parent class)\n(x = {self.x}, y = {self.y})"
     
     def __repr__(self):
         """
-        an override of 
-        __repr__()
+        developer string display (for debugging)
         """
-        return str(self)
+        return f"Geometry(parent class)\n(x = {self.x}, y = {self.y})"

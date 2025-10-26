@@ -1,8 +1,15 @@
 """ 
-Rectangle-specific logic, inherits Geometry
+- Rectangle-specific pyscript, inherits Geometry
+
+- 
+
+- Each child class implements its own formula for area and perimeter
 """
 
 from geometry import Geometry
+from util import validate_number
+import math
+
 
 class Rectangle(Geometry):
     def __init__(self, width:int, height:int):
@@ -34,5 +41,17 @@ class Rectangle(Geometry):
     # --------------------------
     #         METHOD
     # --------------------------
-    def width(self):
+    def area(self):
         return self.width * self.height
+    
+    def perimeter(self):
+        return 2* (self.width * self.height)
+    
+    def __str__(self):
+        return (self)
+
+    def __repr__(self):
+        return f"Rectangle\nwidth = {self._width}\nheight = {self._height}"
+    
+rectangle = Rectangle(x=0, y=0, width=1, height=1) 
+rectangle2 = Rectangle(width=3, height="5") # raise TypeError
