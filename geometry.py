@@ -1,10 +1,10 @@
 """
-geometry_lab/
+geometry_lab3/
 ├── geometry.py         # Geometry parent class
-├── circle.py           # Circle shape
-├── rectangle.py        # Rectangle shape
-├── plotter.py          # Bonus: for drawing shapes
-├── util.py             # Validation helpers
+├── circle.py           # Circle child class
+├── rectangle.py        # Rectangle child class
+├── plotter.py          # drawing shapes
+├── util.py             # Validation helper
 ├── test_circle.py      # Unit tests
 ├── test_rectangle.py   # Unit tests
 └── explorer.ipynb      # Manual test notebook
@@ -45,6 +45,7 @@ class Geometry:
 # -------------------------
 #        PROPERTIES
 # -------------------------
+    """x and y representing the center position of the object"""
 
     # read only x property
     @property
@@ -60,36 +61,28 @@ class Geometry:
 # ---------------------------------
 #            METHODS
 #----------------------------------
-    """
-    an operator overloads of comparison operator
-    to check the value comparisons between values.
-
-    AREA
-    Geometry class contains the area comparison 
-    since areas are comparable regardless of shape
-    """
 
     def translate(self, x_translate:float, y_translate:float):
         """
-        method to move x and y coordinates
-        depending on the value,
-        it is incremented x += x_translate and y += y_translate,
-        store those new coordinates in (x_translate, y_translate)
+        - method to move x and y coordinates
+        depending on the value, it is incremented x += x_translate and y += y_translate,
+
+        - store those new coordinates in (x_translate, y_translate)
         but not overwrties property _x and _y
         """
         if not all (isinstance(value, Number) for value in (x_translate, y_translate)):
             raise TypeError("x_translate and y_translate must BOTH be a number, NO STRINGS ALLOWED")
-        self._x_translate = x_translate
-        self._y = y_translate
+        self._x += x_translate
+        self._y += y_translate
 
 # ---------------------------------
 #         OPERATOR OVERLOAD
 #----------------------------------
     """
-    Comparison Operators (==, <, <=, >, >=)
-
-    Comparison is based on the shape's area.
-    The area is defined separately in each child class
+    - Comparison Operators (==, <, <=, >, >=)
+    - Comparison is based on the shape's area.
+    - The area is defined separately in each child class
+    - The result of the value of each circle's area will be used for testing later
     """
 
     def __eq__(self, value):
@@ -119,7 +112,7 @@ class Geometry:
         """
         user-friendly string display
         """
-        return f"Geometry(parent class)\n(x = {self.x}, y = {self.y})"
+        return f"Hello! My name is Geometry. I'm the parent class. hohoho!\nMy coordinates are({self.x}, {self.y})"
     
     def __repr__(self):
         """

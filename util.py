@@ -1,5 +1,5 @@
 """
-Reuse util.py for validation (positive numbers)
+Reuse util.py for validation/error handling (numbers)
 
 """
 

@@ -17,15 +17,13 @@ class Rectangle(Geometry):
     - x and y can be set by user later with incrementation +=
     - (x, y) = (width, height)
     - Inherits x and y from geometry property
-    - 3 and 5 taken from the lab 3 test code sample, but could be any number
+    - 3 and 5 taken from the lab 3 test code sample, but could be any number later
     """
     def __init__(self, x = 0, y = 0, width:float = 3, height:float = 5):
         
         """
         - Reuse validation imported form validate_number
         - Check x, y (already done in Geometry.py) are numbers in super().__init__
-
-        - PLEASE REMEMBER!
         - Width and height must be numbers (+ or -) OK for placement in any quadrant
         - Width and height cannot be equal values (this is not a square)
         """
@@ -46,6 +44,7 @@ class Rectangle(Geometry):
     # -------------------------
     #        PROPERTY
     # --------------------------
+    """x(width) and y(height) representing the center position of the object"""
     @property
     def width(self):
     # width rectangle read-only property
@@ -71,8 +70,9 @@ class Rectangle(Geometry):
     # --------------------------
     #         METHOD 
     # --------------------------
-    def is_unit_square(self):
-        """Return True if width == height."""
+    def is_unit_square(self) -> bool:
+        """Return True if it is a square,  width == height."""
+        print(f"It's a square.\n{self.width} == {self.height}.")
         return self.width == self.height
 
 
@@ -83,7 +83,7 @@ class Rectangle(Geometry):
     
     def __str__(self):
         """User-friendly display"""
-        return f"Rectangle width = {self._width}\nheight = {self._height}\nx = {self._x}\ny = {self._y}"
+        return f"Hej! I'm a rectangle with a width of {self._width}\nand a height of {self._height}\nMy area is {self.area}.\nMy perimeter is{self.perimeter}"
 
     def __repr__(self):
         """Developer-friendly display"""
