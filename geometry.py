@@ -69,18 +69,18 @@ class Geometry:
     since areas are comparable regardless of shape
     """
 
-    def translate(self, dx:float, dy:float):
+    def translate(self, x_translate:float, y_translate:float):
         """
         method to move x and y coordinates
         depending on the value,
-        it is incremented x += dx and y += dy,
-        store those new coordinates in (dx, dy)
+        it is incremented x += x_translate and y += y_translate,
+        store those new coordinates in (x_translate, y_translate)
         but not overwrties property _x and _y
         """
-        if not all (isinstance(value, Number) for value in (dx, dy)):
-            raise TypeError("dx and dy must be a number")
-        self._x = dx
-        self._y = dy
+        if not all (isinstance(value, Number) for value in (x_translate, y_translate)):
+            raise TypeError("x_translate and y_translate must BOTH be a number, NO STRINGS ALLOWED")
+        self._x_translate = x_translate
+        self._y = y_translate
 
 # ---------------------------------
 #         OPERATOR OVERLOAD
@@ -110,7 +110,7 @@ class Geometry:
     def __ge__(self,value):
         return self.area >= value.area 
     
-    
+
     # --------------------------
     #      REPRESENTATION
     # --------------------------

@@ -1,9 +1,8 @@
 """ 
 - Rectangle-specific pyscript, inherits Geometry
-
-- 
-
+- Inputs width and height for size
 - Each child class implements its own formula for area and perimeter
+- Calculates area and perimeter using rectangle's own standard formulas
 """
 
 from geometry import Geometry
@@ -12,46 +11,81 @@ import math
 
 
 class Rectangle(Geometry):
-    def __init__(self, width:int, height:int):
+    """
+    - In math geometry, plotting starts at 0
+    - x and y are set to 0
+    - x and y can be set by user later with incrementation +=
+    - (x, y) = (width, height)
+    - Inherits x and y from geometry property
+    - 3 and 5 taken from the lab 3 test code sample, but could be any number
+    """
+    def __init__(self, x = 0, y = 0, width:float = 3, height:float = 5):
+        
+        """
+        - Reuse validation imported form validate_number
+        - Check x, y (already done in Geometry.py) are numbers in super().__init__
+
+        - PLEASE REMEMBER!
+        - Width and height must be numbers (+ or -) OK for placement in any quadrant
+        - Width and height cannot be equal values (this is not a square)
+        """
         super().__init__(x,y)
 
-        # create instances unique to rectangle
+        # validate the width and height first before assigning below
+        validate_number(width)
+        validate_number(height)
+
+        if width == height:
+            raise ValueError("Width and height cannot be equal. This is not a square")
+    
+        # assign instances last unique to rectangle
         self._width = width
         self._height = height
-        """
-        Validation, check x, y and radius are integers
-        """
-        try:
-            if not isinstance (x, int) or not (y, int) or not (radius, int):
-                raise TypeError("All values must be integer s")
-            # store all attributes as objects
-            self.value = (x, y, width, height)
-
-        except TypeError as e:
-            print(f"Error {e}")
-            raise # stop program if invalid inputs are used
 
         
     # -------------------------
     #        PROPERTY
     # --------------------------
     @property
+    def width(self):
+    # width rectangle read-only property
+        return self._width
 
+    @property
+    def height(self):
+    # height rectangle read-only property
+        return self._height
 
-    # --------------------------
-    #         METHOD
-    # --------------------------
+    @property
     def area(self):
-        return self.width * self.height
-    
+        # calculate rectangle area
+        return self._width * self._height
+
+    @property
     def perimeter(self):
-        return 2* (self.width * self.height)
+    # calculate rectangle perimeter
+        return 2 * (self._width + self._height)
+
+
+
+    # --------------------------
+    #         METHOD 
+    # --------------------------
+    def is_unit_square(self):
+        """Return True if width == height."""
+        return self.width == self.height
+
+
+
+    # --------------------------
+    #      REPRESENTATION
+    # --------------------------
     
     def __str__(self):
-        return (self)
+        """User-friendly display"""
+        return f"Rectangle width = {self._width}\nheight = {self._height}\nx = {self._x}\ny = {self._y}"
 
     def __repr__(self):
-        return f"Rectangle\nwidth = {self._width}\nheight = {self._height}"
+        """Developer-friendly display"""
+        return f"Rectangle\nwidth = {self._width}\nheight = {self._height}\nx = {self._x}\ny = {self._y}"
     
-rectangle = Rectangle(x=0, y=0, width=1, height=1) 
-rectangle2 = Rectangle(width=3, height="5") # raise TypeError

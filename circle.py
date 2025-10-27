@@ -24,15 +24,17 @@ class Circle(Geometry):
         x and y can be set by user later with incrementation +=
 
         radius set to 1 as default
-        no circle = 0 exists
+        no circle that is = 0 exists
         """
         super().__init__(x,y)
-        validate_number(radius)
-        self._radius = radius
 
-        if radius <= 0:
-            # checks if radius is positive
-            raise ValueError("Radius must be positive number")
+        # almost the same as validate_number, different approach
+        if not isinstance(radius, (int, float)):
+            # negative is ok, but not strings
+            raise TypeError(f"Radius must be a number, not a {type(radius)}.")
+        
+        # assign attributes
+        self._radius = radius
         
     # -------------------------
     #        PROPERTY
@@ -57,9 +59,13 @@ class Circle(Geometry):
     #         METHOD
     # --------------------------
     def is_unit_circle(self):
-        # if unit circle = True
-        """Checks if the circle is a unit circle."""
-        return self._radius == 1
+        """
+        - Checks if the circle is a unit circle
+        - If unit is circle = True
+        - Equation of a unit circle: x² + y² = 1
+        - means x = 0, y = 0, radius = 1
+        """
+        return self._radius == 1 and self.x == 0 and self.y == 0
     
     # --------------------------
     #      REPRESENTATION
