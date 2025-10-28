@@ -7,7 +7,6 @@ geometry_lab3/
 ├── util.py             # Validation helper
 ├── test_circle.py      # Unit tests
 ├── test_rectangle.py   # Unit tests
-└── explorer.ipynb      # Manual test notebook
 
 Inheritance → Rectangle and Circle will share a parent class (Geometry).
 
@@ -95,8 +94,9 @@ class Geometry:
 #         OPERATOR OVERLOAD
 #----------------------------------
     """
-    - Comparison Operators (==, <, <=, >, >=)
-    - Comparison is based on the shape's area.
+    - Both Circle and Rectangle have their own area implementations,
+    it gives universal comparison logic that works for any shape.
+
     - The area is defined separately in each child class
     - The result of the value of each circle's area will be used for testing later
     """
