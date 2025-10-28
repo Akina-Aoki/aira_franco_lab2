@@ -65,15 +65,31 @@ class Geometry:
     def translate(self, x_translate:float, y_translate:float):
         """
         - method to move x and y coordinates
-        depending on the value, it is incremented x += x_translate and y += y_translate,
+        depending on the value, it is incremented x += x_translate and y += y_translate
 
-        - store those new coordinates in (x_translate, y_translate)
-        but not overwrties property _x and _y
+        - new coordinates in (x_translate, y_translate)
+        increment to property _x and _y
+
+        - Bug here when testing rectangle: DECISION PENDING
+        - translate() method doesn’t “reset” the rectangle’s position, it adds to its current coordinates.
+        - Just want to “set position” not "increment position" during tests
         """
         if not all (isinstance(value, Number) for value in (x_translate, y_translate)):
             raise TypeError("x_translate and y_translate must BOTH be a number, NO STRINGS ALLOWED")
         self._x += x_translate
         self._y += y_translate
+
+   
+   
+    """ 
+    def move_to(self, new_x: float, new_y: float):
+    # Move shape to exact new coordinates (overwrite x and y).
+    if not all(isinstance(value, Number) for value in (new_x, new_y)):
+        raise TypeError("new_x and new_y must both be numbers")
+    self._x = new_x
+    self._y = new_y
+    """
+
 
 # ---------------------------------
 #         OPERATOR OVERLOAD

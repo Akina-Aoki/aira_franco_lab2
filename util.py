@@ -1,6 +1,6 @@
 """
-Reuse util.py for validation/error handling (numbers)
-
+- Reuse util.py for validation/error handling (numbers)
+- Negative numbers are not rejected because there are negative quadrants
 """
 
 from numbers import Number
