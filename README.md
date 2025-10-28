@@ -1,17 +1,17 @@
 # aira_franco_lab3
 ## Demonstrations of:
 
-### Encapsulation → using private attributes (_attribute and __attribute).
+- Encapsulation → using private attributes (_attribute and __attribute).
 
-### Validation and error handling → checking types and values inside setters or constructors.
+- Validation and error handling → checking types and values inside setters or constructors.
 
-### Inheritance → several examples of parent and child classes.
+- Inheritance → several examples of parent and child classes.
 
-### Polymorphism → overridden methods across child classes.
+- Polymorphism → overridden methods across child classes.
 
-### Modularity → creating small files or sections with reusable functions or methods.
+- Modularity → creating small files or sections with reusable functions or methods.
 
-________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________________________________________________________________
 ## References
 ### repo 
 - https://github.com/mirzayasirabdullahbaig07/OOP-In-Python.git
@@ -42,12 +42,19 @@ https://www.youtube.com/watch?v=m2JIBytk7Hg
 
 ### Validation
 - Used same logic from OLD COIN STASH for validation in a util.py  
-https://github.com/Akina-Aoki/python_course/tree/main/14_oop_inheritance 
+https://github.com/Akina-Aoki/python_course/tree/main/14_oop_inheritance
+
+### is_unit_square 
+- LLM help: https://chatgpt.com/share/6901194b-5360-8003-8e80-4df1e7a423d2
+  
+### LLM Help with code
+- https://chatgpt.com/g/g-p-68f8d0c6457c819183ed667899bce738-lab-3-geometry/shared/c/68fb3998-4f6c-8331-868f-f721178c1067?owner_user_id=user-NLscVkJ6P3VkgD6x67KkiwJE
 
 ### Plotting
 - https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html?utm_source=chatgpt.com
 - https://www.statology.org/matplotlib-rectangle/?utm_source=chatgpt.com
-- https://www.geeksforgeeks.org/python/matplotlib-patches-rectangle-in-python/ 
+- https://www.geeksforgeeks.org/python/matplotlib-patches-rectangle-in-python/
+- Help with LLM: https://chatgpt.com/g/g-p-68f8d0c6457c819183ed667899bce738-lab-3-geometry/shared/c/6900cbdb-26d4-832b-8e84-6b5a39026b99?owner_user_id=user-NLscVkJ6P3VkgD6x67KkiwJE 
 
 
 | Concept / File                                      | In the GitHub repo example                                             | In your **geometry_lab3** project                                                                                     |
@@ -62,7 +69,8 @@ https://github.com/Akina-Aoki/python_course/tree/main/14_oop_inheritance
 | **README.md**                                       | Explanation of class purpose and example output                        | Summarizes project structure, OOP principles used (inheritance, polymorphism, composition), and how to run tests      |
 
 
-![Geometry CLass UML](https://github.com/user-attachments/assets/aa32dbac-c840-4787-a908-f132769c68b2)
+![Blank diagram (1)](https://github.com/user-attachments/assets/4a6127fd-574c-465b-b7cf-40bd3cab7297)
+
 
 
 
