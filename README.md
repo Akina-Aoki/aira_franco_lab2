@@ -1,4 +1,4 @@
-# aira_franco_lab3
+# aira_franco_lab2
 ## Demonstrations of:
 
 - Encapsulation → using private attributes (_attribute and __attribute).
