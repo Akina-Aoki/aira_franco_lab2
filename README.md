@@ -79,6 +79,7 @@ https://github.com/Akina-Aoki/python_course/tree/main/14_oop_inheritance
 - https://chatgpt.com/g/g-p-68f8d0c6457c819183ed667899bce738-lab-3-geometry/shared/c/68fb3998-4f6c-8331-868f-f721178c1067?owner_user_id=user-NLscVkJ6P3VkgD6x67KkiwJE
 
 ### Plotting
+#### Anatomy of a figure https://matplotlib.org/stable/gallery/showcase/anatomy.html
 - https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html?utm_source=chatgpt.com
 - https://www.statology.org/matplotlib-rectangle/?utm_source=chatgpt.com
 - https://www.geeksforgeeks.org/python/matplotlib-patches-rectangle-in-python/
