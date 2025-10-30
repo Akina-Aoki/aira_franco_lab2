@@ -1,4 +1,4 @@
-# aira_franco_lab3
+# aira_franco_lab2_ task1
 ## Demonstrations of:
 
 - Encapsulation → using private attributes (_attribute and __attribute).
@@ -11,7 +11,35 @@
 
 - Modularity → creating small files or sections with reusable functions or methods.
 
-__________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+geometry_lab3/
+├── geometry.py         # Geometry parent class
+├── circle.py           # Circle child class
+├── rectangle.py        # Rectangle child class
+├── plotter.py          # plotting
+├── util.py             # Validation helper
+├── test_circle.py      # Unit tests
+├── test_rectangle.py   # Unit tests
+
+___________________________________________________________________________________________________________________________________________________
+
+
+
+| Concept / File                                      | In the GitHub repo example                                             | In your **geometry_lab2** project                                                                                     |
+| --------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Validation helper** (`util.py`)                   | Validation often done inside the class itself                          | `util.py` – defines `validate_number()` for reusable number checking, imported by all shape classes (modularity)      |
+| **Parent class** (`geometry.py`)                    | Base classes like `Animal`, `Vehicle`, etc., showing shared attributes | `Geometry` – defines `x`, `y`, `translate()`, and comparison operators for all geometric shapes                       |
+| **Child class 1** (`circle.py`)                     | Example subclasses overriding methods (e.g., `Dog.speak()`)            | `Circle` – inherits from `Geometry`; defines its own `area`, `perimeter`, and string representation                   |
+| **Child class 2** (`rectangle.py`)                  | Another subclass with its own unique behavior                          | `Rectangle` – inherits from `Geometry`; implements its own `area`, `perimeter`, `translate()`, and `is_unit_square()` |
+| **Composition class** (`plotter.py`)                | Demonstrates “has-a” relationships or object containers                | `Plotter` – holds multiple shape objects (`Circle`, `Rectangle`) and visualizes them together with `matplotlib`       |
+| **Manual test notebook 1** (`test_circle.ipynb`)    | Simple script files creating and testing instances                     | Tests for `Circle` class: creating, moving, comparing, and validating expected outputs                                |
+| **Manual test notebook 2** (`test_rectangle.ipynb`) | Similar instance tests for subclasses                                  | Tests for `Rectangle`: creation, area/perimeter checks, translation, and `is_unit_square()` logic                     |
+| **README.md**                                       | Explanation of class purpose and example output                        | Summarizes project structure, OOP principles used (inheritance, polymorphism, composition), and how to run tests      |
+
+
+![Blank diagram (1)](https://github.com/user-attachments/assets/4a6127fd-574c-465b-b7cf-40bd3cab7297)
+
+
 ## References
 ### repo 
 - https://github.com/mirzayasirabdullahbaig07/OOP-In-Python.git
@@ -55,22 +83,4 @@ https://github.com/Akina-Aoki/python_course/tree/main/14_oop_inheritance
 - https://www.statology.org/matplotlib-rectangle/?utm_source=chatgpt.com
 - https://www.geeksforgeeks.org/python/matplotlib-patches-rectangle-in-python/
 - Help with LLM: https://chatgpt.com/g/g-p-68f8d0c6457c819183ed667899bce738-lab-3-geometry/shared/c/6900cbdb-26d4-832b-8e84-6b5a39026b99?owner_user_id=user-NLscVkJ6P3VkgD6x67KkiwJE 
-
-
-| Concept / File                                      | In the GitHub repo example                                             | In your **geometry_lab3** project                                                                                     |
-| --------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Validation helper** (`util.py`)                   | Validation often done inside the class itself                          | `util.py` – defines `validate_number()` for reusable number checking, imported by all shape classes (modularity)      |
-| **Parent class** (`geometry.py`)                    | Base classes like `Animal`, `Vehicle`, etc., showing shared attributes | `Geometry` – defines `x`, `y`, `translate()`, and comparison operators for all geometric shapes                       |
-| **Child class 1** (`circle.py`)                     | Example subclasses overriding methods (e.g., `Dog.speak()`)            | `Circle` – inherits from `Geometry`; defines its own `area`, `perimeter`, and string representation                   |
-| **Child class 2** (`rectangle.py`)                  | Another subclass with its own unique behavior                          | `Rectangle` – inherits from `Geometry`; implements its own `area`, `perimeter`, `translate()`, and `is_unit_square()` |
-| **Composition class** (`plotter.py`)                | Demonstrates “has-a” relationships or object containers                | `Plotter` – holds multiple shape objects (`Circle`, `Rectangle`) and visualizes them together with `matplotlib`       |
-| **Manual test notebook 1** (`test_circle.ipynb`)    | Simple script files creating and testing instances                     | Tests for `Circle` class: creating, moving, comparing, and validating expected outputs                                |
-| **Manual test notebook 2** (`test_rectangle.ipynb`) | Similar instance tests for subclasses                                  | Tests for `Rectangle`: creation, area/perimeter checks, translation, and `is_unit_square()` logic                     |
-| **README.md**                                       | Explanation of class purpose and example output                        | Summarizes project structure, OOP principles used (inheritance, polymorphism, composition), and how to run tests      |
-
-
-![Blank diagram (1)](https://github.com/user-attachments/assets/4a6127fd-574c-465b-b7cf-40bd3cab7297)
-
-
-
 

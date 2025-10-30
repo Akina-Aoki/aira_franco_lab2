@@ -1,34 +1,33 @@
-"""
-geometry_lab3/
-├── geometry.py         # Geometry parent class
-├── circle.py           # Circle child class
-├── rectangle.py        # Rectangle child class
-├── plotter.py          # drawing shapes
-├── util.py             # Validation helper
-├── test_circle.py      # Unit tests
-├── test_rectangle.py   # Unit tests
-
-Inheritance → Rectangle and Circle will share a parent class (Geometry).
-
-Polymorphism → Each shape has the same method names (area, perimeter) but works differently.
-
-Composition → A separate class that has shapes inside it (not inherits from them).
-
-Validation → Reuse the simple number validation from util.py.
-
-"""
 import math
 from numbers import Number
 from util import validate_number
 
 class Geometry:
     """ 
-    parent class for all geometric shapes.
-    Stores the position (x, y) which has:
-    - how shapes can move (translate)
-    - how to compare shapes by their area
-    - how to print object info using __str__ and __repr__
+    A class representing a person.
 
+    Attributes:
+    - name (str): The name of the person.
+    - age (int): The age of the person.
+    - gender (str): The gender of the person ('Male', 'Female', 'Non-binary', etc.).
+
+    Methods:
+    - greet(): Prints a greeting message.
+    - have_birthday(): Increments the age of the person by one.
+
+    Example usage:
+    >>> person1 = Person("Alice", 25, "Female")
+    >>> person1.greet()
+    Hello, I'm Alice!
+    >>> person1.have_birthday()
+    >>> person1.age
+    26
+
+
+    Stores the position (x, y) which has:
+    - how shapes can move (translate method)
+    - how to compare shapes by their area and perimeter
+    - object info using __str__ and __repr__
     """
 
     def __init__(self, x:float, y:float):
@@ -44,7 +43,7 @@ class Geometry:
 # -------------------------
 #        PROPERTIES
 # -------------------------
-    """x and y representing the center position of the object"""
+    """x and y representing the center / origin position of the object"""
 
     # read only x property
     @property
@@ -64,60 +63,56 @@ class Geometry:
     def translate(self, x_translate:float, y_translate:float):
         """
         - method to move x and y coordinates
-        depending on the value, it is incremented x += x_translate and y += y_translate
+        depending on the value, the new values are incremented to x += x_translate and y += y_translate.
 
-        - new coordinates in (x_translate, y_translate)
-        increment to property _x and _y
-
-        - Bug here when testing rectangle: DECISION PENDING
-        - translate() method doesn’t “reset” the rectangle’s position, it adds to its current coordinates.
-        - Just want to “set position” not "increment position" during tests
+        - Bug here when testing rectangle: DECISION: Will not make a reset button. Just run once.
+        - translate() method doesn’t “reset” the rectangle’s position, it increments to its current coordinates.
         """
         if not all (isinstance(value, Number) for value in (x_translate, y_translate)):
             raise TypeError("x_translate and y_translate must BOTH be a number, NO STRINGS ALLOWED")
         self._x += x_translate
         self._y += y_translate
 
-   
-   
-    """ 
-    def move_to(self, new_x: float, new_y: float):
-    # Move shape to exact new coordinates (overwrite x and y).
-    if not all(isinstance(value, Number) for value in (new_x, new_y)):
-        raise TypeError("new_x and new_y must both be numbers")
-    self._x = new_x
-    self._y = new_y
-    """
-
 
 # ---------------------------------
 #         OPERATOR OVERLOAD
 #----------------------------------
     """
-    - Both Circle and Rectangle have their own area implementations,
-    it gives universal comparison logic that works for any shape.
+    - Both Circle and Rectangle have their own area and perimeter implementations,
+    it gives universal comparison logic that works for any shape class.
 
-    - The area is defined separately in each child class
-    - The result of the value of each circle's area will be used for testing later
+    - The result of the value of each circle's area and perimeter will be used for testing
+    and operation overloading below.
+
+    - If areas are equal, perimeter will be used as a TIEBRAKER.
+    - self = x, value = y (that's just how it is)
+    - Do not crashes and ignored with "NotImplemented" when a non-existent value is given.
     """
 
     def __eq__(self, value):
         if not isinstance(value, Geometry):
             return NotImplemented
-        # used fot taking area for circle and rectangle
-        return self.area == value.area
+        return (self.area, self.perimeter) == (value.area, value.perimeter)
     
     def __lt__(self, value):
-        return self.area < value.area
+        if not isinstance(value, Geometry):
+            return NotImplemented
+        return (self.area, self.perimeter) < (value.area, value.perimeter)
     
     def __le__(self, value):
-        return self.area <= value.area
+        if not isinstance(value, Geometry):
+            return NotImplemented
+        return (self.area, self.perimeter) <= (value.area, value.perimeter)
     
     def __gt__(self,value):
-        return self.area > value.area
+        if not isinstance(value, Geometry):
+            return NotImplemented
+        return (self.area, self.perimeter) > (value.area, value.perimeter)
     
     def __ge__(self,value):
-        return self.area >= value.area 
+        if not isinstance(value, Geometry):
+            return NotImplemented
+        return (self.area, self.perimeter) >= (value.area, value.perimeter)
     
 
     # --------------------------
