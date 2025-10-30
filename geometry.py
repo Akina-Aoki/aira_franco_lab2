@@ -1,28 +1,20 @@
 import math
 from numbers import Number
-from util import validate_number
+from util import validate_number, validate_positive_number
+
 
 class Geometry:
     """ 
-    A class representing a person.
+    A parent class representing Geometry
 
     Attributes:
-    - name (str): The name of the person.
-    - age (int): The age of the person.
-    - gender (str): The gender of the person ('Male', 'Female', 'Non-binary', etc.).
+    - x (float): read only
+    - y (float): read only
 
     Methods:
-    - greet(): Prints a greeting message.
-    - have_birthday(): Increments the age of the person by one.
-
-    Example usage:
-    >>> person1 = Person("Alice", 25, "Female")
-    >>> person1.greet()
-    Hello, I'm Alice!
-    >>> person1.have_birthday()
-    >>> person1.age
-    26
-
+    - translate(): method to move x and y coordinates
+    
+    Operator Overloading:
 
     Stores the position (x, y) which has:
     - how shapes can move (translate method)

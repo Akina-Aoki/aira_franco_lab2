@@ -7,7 +7,7 @@
 """
 
 from geometry import Geometry
-from util import validate_number
+from util import validate_number, validate_positive_number
 import math
 
 class Circle(Geometry):
@@ -17,22 +17,18 @@ class Circle(Geometry):
     def __init__(self, x = 0, y = 0, radius:float = 1):
         """
         - Validates that radius is a number imported from (validate_number from util.py).
-        - Uses super().__init__() to reuse code from Geometry.
+        - Inherit with super().__init__() to reuse code from Geometry.
 
         - In math geometry, plotting starts at 0
         - x and y are set to 0
         - x and y can be set by user later with incrementation +=
 
         - radius set to 1 as default
-        - no circle that radius = 0 exists
+        - no circle that radius = 0 exists or below, ValueError
         """
         super().__init__(x,y)
-
-        # almost the same as validate_number, different approach
-        if not isinstance(radius, (int, float)):
-            # negative is ok, but not strings
-            raise TypeError(f"Radius must be a number, not a {type(radius)}.")
-        
+        validate_positive_number(radius)
+        # uses validation from util.py
         # assign attributes
         self._radius = radius
         

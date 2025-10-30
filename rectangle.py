@@ -6,7 +6,7 @@
 """
 
 from geometry import Geometry
-from util import validate_number
+from util import validate_number, validate_positive_number
 import math
 
 
@@ -31,8 +31,8 @@ class Rectangle(Geometry):
         super().__init__(x,y)
 
         # validate the width and height first before assigning below
-        validate_number(width)
-        validate_number(height)
+        validate_positive_number(width)
+        validate_positive_number(height)
     
         # assign instances last unique to rectangle
         self._width = width
