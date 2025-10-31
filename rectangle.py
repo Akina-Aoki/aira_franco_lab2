@@ -1,12 +1,34 @@
 """ 
-- Rectangle-specific pyscript, inherits Geometry
-- Inputs width and height for size
-- Each child class implements its own formula for area and perimeter
-- Calculates area and perimeter using rectangle's own standard formulas
+A child class representing Rectangle
+
+    Attributes:
+    - x : read only (inherited)
+    - y : read only (inherited)
+    - width (float): read only 
+    - height (float): read only
+
+    Computed properties:
+    - area and perimeter are computed properties (read-only).
+    - They are not stored as instance attributes because their values depend on the rectangle’s width and height.
+    Don’t need to store W and H because they are computable.
+
+    Methods:
+    - translate(): to move x and y coordinates
+    - inherited from parent class by default and overriden with additional logging.
+    - Added console output
+    - is_unit_square(): to return True if width == height, otherwise False
+
+    Other info: 
+    Stores the position (x, y) which has:
+    - how shapes can move (translate method)
+    - how to compare shapes by their area and perimeter
+    - object info using __str__ and __repr__
+    - Each child class implements its own formula for area and perimeter
+    - Calculates area and perimeter using rectangle's own standard formulas
 """
 
 from geometry import Geometry
-from util import validate_number, validate_positive_number
+from util import validate_positive_number
 import math
 
 
@@ -42,7 +64,7 @@ class Rectangle(Geometry):
     # -------------------------
     #        PROPERTY
     # --------------------------
-    """x(width) and y(height) representing the center position of the object"""
+    """- x and y representing the center position of the object"""
     @property
     def width(self):
     # width rectangle read-only property

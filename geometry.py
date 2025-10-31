@@ -57,7 +57,7 @@ class Geometry:
         - method to move x and y coordinates
         depending on the value, the new values are incremented to x += x_translate and y += y_translate.
 
-        - Bug here when testing rectangle: DECISION: Will not make a reset button. Just run once.
+        - Bug here when testing circle and rectangle: DECISION: Will not make a reset button. Just run once.
         - translate() method doesn’t “reset” the rectangle’s position, it increments to its current coordinates.
         """
         if not all (isinstance(value, Number) for value in (x_translate, y_translate)):

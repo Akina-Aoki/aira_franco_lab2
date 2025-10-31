@@ -12,11 +12,11 @@
 - Modularity → creating small files or sections with reusable functions or methods.
 
 
-geometry_lab3/
+geometry_lab2/
 ├── geometry.py         # Geometry parent class
 ├── circle.py           # Circle child class
 ├── rectangle.py        # Rectangle child class
-├── plotter.py          # plotting
+├── Shape2Dplotter.py   # plotting
 ├── util.py             # Validation helper
 ├── test_circle.py      # Unit tests
 ├── test_rectangle.py   # Unit tests
@@ -37,7 +37,27 @@ ________________________________________________________________________________
 | **README.md**                                       | Explanation of class purpose and example output                        | Summarizes project structure, OOP principles used (inheritance, polymorphism, composition), and how to run tests      |
 
 
-![Blank diagram (1)](https://github.com/user-attachments/assets/4a6127fd-574c-465b-b7cf-40bd3cab7297)
+## translate()
+| Class         | Where `translate()` comes from | Behavior                                         | Prints extra info? |
+| ------------- | ------------------------------ | ------------------------------------------------ | ------------------ |
+| **Geometry**  | Original definition            | Base coordinate translation                      | No                 |
+| **Circle**    | Inherited from Geometry        | Moves the center position                        | No                 |
+| **Rectangle** | Overridden + calls `super()`   | Moves the shape and prints before/after movement | Yes                |
+
+## Shape2DPlotter()
+
+| Step  | Action                 | Location in Code         | Description                                                                                                      |
+| ----- | ---------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| **1** | Create plotter object  | `__init__()`             | Initializes an empty list named `shapes` for storing all added shapes.                                           |
+| **2** | Add shapes             | `add_shape()`            | Appends a `Rectangle` or `Circle` object to the internal list.                                                   |
+| **3** | Start plotting         | `plot_all()`             | Creates the `matplotlib` figure and axes for drawing.                                                            |
+| **4** | Iterate through shapes | Loop inside `plot_all()` | Goes through each stored shape in the list.                                                                      |
+| **5** | Detect shape type      | `hasattr()` checks       | If object has `width` and `height`, it is treated as a rectangle; if it has `radius`, it is treated as a circle. |
+| **6** | Draw rectangle         | `_plot_rectangle()`      | Creates a `matplotlib.patches.Rectangle` object, adds it to axes, and labels the area.                           |
+| **7** | Draw circle            | `_plot_circle()`         | Creates a `matplotlib.patches.Circle` object, adds it to axes, and labels the area.                              |
+| **8** | Format plot            | End of `plot_all()`      | Sets equal axis scale, adds title, axis labels, and grid lines.                                                  |
+| **9** | Display result         | `plt.show()`             | Displays all shapes together in one coordinate grid.                                                             |
+
 
 
 ## References
@@ -79,9 +99,38 @@ https://github.com/Akina-Aoki/python_course/tree/main/14_oop_inheritance
 - https://chatgpt.com/g/g-p-68f8d0c6457c819183ed667899bce738-lab-3-geometry/shared/c/68fb3998-4f6c-8331-868f-f721178c1067?owner_user_id=user-NLscVkJ6P3VkgD6x67KkiwJE
 
 ### Plotting
-#### Anatomy of a figure https://matplotlib.org/stable/gallery/showcase/anatomy.html
-- https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html?utm_source=chatgpt.com
+- Anatomy of a figure 
+https://matplotlib.org/stable/gallery/showcase/anatomy.html
+
 - https://www.statology.org/matplotlib-rectangle/?utm_source=chatgpt.com
+
 - https://www.geeksforgeeks.org/python/matplotlib-patches-rectangle-in-python/
+
 - Help with LLM: https://chatgpt.com/g/g-p-68f8d0c6457c819183ed667899bce738-lab-3-geometry/shared/c/6900cbdb-26d4-832b-8e84-6b5a39026b99?owner_user_id=user-NLscVkJ6P3VkgD6x67KkiwJE 
 
+- add_patch
+https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.add_patch.html#matplotlib.axes.Axes.add_patch
+
+-axes.text
+https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
+
+- MplRectangle Matplotlib
+https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html
+
+- MplCircle
+https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Circle.html
+
+- plt.subplots()
+https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html
+
+- hasattr(obj, name)
+![alt text](image.png)
+
+- set_aspect
+https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_aspect.html#matplotlib.axes.Axes.set_aspect
+
+- ax.grid()
+https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html#matplotlib.axes.Axes.grid
+
+- ax.autoscale()
+https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.autoscale.html#matplotlib.axes.Axes.autoscale

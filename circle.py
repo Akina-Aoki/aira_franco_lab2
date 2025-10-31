@@ -1,34 +1,48 @@
 """ 
-- Circle-specific pyscript, inherits Geometry
-- This class adds a radius attribute
-- Calculates area and perimeter using circle formulas
-- Can check if it's a unit circle (radius = 1)
-- Supports comparison operators for area (inherited from Geometry)
-"""
+A child class representing Circle
+
+    Attributes:
+    - x : read only (inherited)
+    - y : read only (inherited)
+    - radius (float) : read only 
+
+    Computed properties:
+    - area and perimeter are computed properties (read-only).
+    - They are not stored as instance attributes because their values depend on the circle's radius.
+
+    Methods:
+    - translate(): to move x and y coordinates
+    - inherited from parent class by default but not overriden.
+    - is_unit_circle(): to return True if radius = 1, otherwise False
+
+    Other info: 
+    - compare shapes by their area and perimeter
+    - Each child class implements its own formula for area and perimeter
+    - Calculates area and perimeter using circle's own standard formulas
+    - object info using __str__ and __repr__
+""" 
+
+
 
 from geometry import Geometry
-from util import validate_number, validate_positive_number
+from util import validate_positive_number
 import math
 
 class Circle(Geometry):
-    """
-    Implements radius, area, and perimeter.
-    """
     def __init__(self, x = 0, y = 0, radius:float = 1):
         """
-        - Validates that radius is a number imported from (validate_number from util.py).
+        - Validates that radius is a number imported from (validate_positive_number from util.py).
         - Inherit with super().__init__() to reuse code from Geometry.
 
         - In math geometry, plotting starts at 0
         - x and y are set to 0
         - x and y can be set by user later with incrementation +=
 
-        - radius set to 1 as default
+        - radius set to 1 as default, if not set in manual testing
         - no circle that radius = 0 exists or below, ValueError
         """
         super().__init__(x,y)
         validate_positive_number(radius)
-        # uses validation from util.py
         # assign attributes
         self._radius = radius
         
