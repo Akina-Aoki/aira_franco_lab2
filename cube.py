@@ -14,7 +14,9 @@ Computed properties and formulas:
 Methods:
 - translate(): move cube’s (x, y) coordinates, inherited from Geometry
 - comparison operators (==, <, >, etc.)
-  * total_ordering automatically fills in missing operators
+- total_ordering decorator module automatically fills in missing operators, 
+  simplifies the development of class comparison methods.
+
 - __str__(): user-friendly text output
 - __repr__(): developer-friendly object representation
 
@@ -22,10 +24,15 @@ Other info:
 - In 3D shapes, a cube is bigger when it has a larger volume, not a larger surface (area).
 - Compare cubes by volume first, and use area only if their volumes are the same.
 - Implements its own formulas for cube_area, cube_perimeter and cube_volume.
+
+Unit Testing: 
+- Testng using pytest just to understand TDD
+- Criterias to test is in the README
+- pytest.approx() for floating-point results to avoid rounding issues
 """
 
 from geometry import Geometry
-from util import validate_positive_number  # same helper as your util.py
+from util import validate_positive_number  # same helper as util.py
 from functools import total_ordering
 
 
@@ -89,27 +96,26 @@ class Cube(Geometry):
         # both x and y volume and area must be the same
         return self.cube_volume == other.cube_volume and self.cube_area == other.cube_area
 
-    def __lt__(self, other):
-    #  Check that "other" is also a Cube
-    # If not, this comparison is not supported
+    def __gt__(self, other):
+        # Check that the compared object is a Cube
         if not isinstance(other, Cube):
             return NotImplemented
 
-    # If both cubes have the same volume,
-    # then compare by surface area instead
+         # When cube volumes are equal,
+        # compare surface areas instead
         if self.cube_volume == other.cube_volume:
-            return self.cube_area < other.cube_area
+            return self.cube_area > other.cube_area
 
-    # Otherwise (volumes are not equal),
-    # compare by volume, cube with smaller volume is <
-        return self.cube_volume < other.cube_volume
+        # When volumes differ,
+        # the cube with the larger volume is considered greater
+        return self.cube_volume > other.cube_volume
 
 
     # --------------------------
     #      REPRESENTATION
     # --------------------------
     def __str__(self):
-        """User-friendly text output"""
+        """User-friendly output"""
         return (f"Hello! I'm a cube with side {self._cube_side}.\n"
                 f"My area is {self.cube_area}.\n"
                 f"My perimeter is {self.cube_perimeter}.\n"

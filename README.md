@@ -1,5 +1,5 @@
-# aira_franco_lab2_ task1
-## Demonstrations of:
+# aira_franco_lab2
+## Demonstrations of these OOP concepts:
 
 - Encapsulation → using private attributes (_attribute and __attribute).
 
@@ -13,18 +13,25 @@
 
 
 geometry_lab2/
-├── geometry.py         # Geometry parent class
-├── circle.py           # Circle child class
-├── rectangle.py        # Rectangle child class
-├── Shape2Dplotter.py   # plotting
-├── util.py             # Validation helper
-├── test_circle.py      # Unit tests
-├── test_rectangle.py   # Unit tests
-├── assets              # images
+├── assets              # images<br>
+├── util.py             # Validation helper<br>
+├── geometry.py         # Geometry parent class<br>
+├── circle.py           # Circle child class<br>
+├── test_circle.py      # Unit tests<br>
+├── rectangle.py        # Rectangle child class<br>
+├── test_rectangle.py   # Unit tests<br>
+├── Shape2Dplotter.py   # plotting<br>
+<br>
+├── cube.py             # Cube child class<br>
+├── test_cube.py        # Unit tests<br>
+├── sphere.py           # Cube child class<br>
+├── test_sphere.py      # Unit tests<br>
+
+
 
 ___________________________________________________________________________________________________________________________________________________
 
-
+## Task 1: Circle and Rectangle
 
 | Concept / File                                      | In the GitHub repo example                                             | In your **geometry_lab2** project                                                                                     |
 | --------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -77,6 +84,30 @@ In 3D geometry, a cube’s size is defined by its volume, not its surface area. 
 | **8** | Format plot            | End of `plot_all()`      | Sets equal axis scale, adds title, axis labels, and grid lines.                                                  |
 | **9** | Display result         | `plt.show()`             | Displays all shapes together in one coordinate grid.                                                             |
 
+________________________________________________________________________________________________________________________________________________
+## Task 2: Cube Testing with pytest
+
+| **Area**            | **What I want to test**   | **Example**                | **What should happen**                  |
+| ------------------- | ------------------------- | -------------------------- | --------------------------------------- |
+| **Creating a cube** | Try default values        | `Cube()`                   | Should make a cube at (0,0) with side 1 |
+|                     | Try custom values         | `Cube(2, 3, 6)`            | Should set x = 2, y = 3, cube_side = 6  |
+|                     | Side = 0                  | `Cube(0, 0, 0)`            | Should give ValueError                  |
+|                     | Side is negative          | `Cube(0, 0, -4)`           | Should give ValueError                  |
+|                     | Side is not a number      | `Cube(0, 0, "five")`       | Should give TypeError                   |
+|-------------------- | ------------------------- |--------------------------- | --------------------------------------- |
+| **Properties**      | Check area formula        | side = 2,  6 × 2²          | Should return 24                        |
+|                     | Check perimeter formula   | side = 2,  12 × 2          | Should return 24                        |
+|                     | Check volume formula      | side = 3,  3³              | Should return 27                        |
+|                     | Try a float value         | side = 2.5                 | Should still work and return decimals   |
+|-------------------- | ------------------------- |--------------------------- | --------------------------------------- |
+| **Translate**       | Move once                 | `translate(2, 3)`          | x and y should become (2, 3)            |
+|                     | Use wrong type            | `translate("a", 5)`        | Should give TypeError                   |
+|-------------------- | ------------------------- |--------------------------- | --------------------------------------- |
+| **Comparing cubes** | Equal cubes               | same side = equal          | Should return True                      |
+|                     | Bigger vs smaller cube    | side 3 vs side 2           | Should return >                         |
+|                     | Same volume but diff area | compare both               | Should compare by area as tiebraker     |
+
+
 
 
 ## References
@@ -95,9 +126,12 @@ In 3D geometry, a cube’s size is defined by its volume, not its surface area. 
 
 ### Geometry shapes and OOP
 - https://www.youtube.com/watch?v=2nB1ktGbLB4
-- In javaScript but similar logic: 
+In javaScript but similar logic: 
 
 ### Operator Overloading 
+- functools
+https://docs.python.org/3/library/functools.html#functools.total_ordering 
+
 - Writing a rational class fraction in Python<br>
 https://profound.academy/python-mid/fraction-class-xxyi3ExuVKFf7o8QdEjL?utm_source=chatgpt.com
 
@@ -127,7 +161,7 @@ https://matplotlib.org/stable/gallery/showcase/anatomy.html
 - add_patch
 https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.add_patch.html#matplotlib.axes.Axes.add_patch
 
--axes.text
+- axes.text
 https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text
 
 - MplRectangle Matplotlib
