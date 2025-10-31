@@ -3,6 +3,7 @@ from numbers import Number
 from util import validate_number, validate_positive_number
 
 
+
 class Geometry:
     """ 
     A parent class representing Geometry

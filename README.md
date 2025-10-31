@@ -20,6 +20,7 @@ geometry_lab2/
 ├── util.py             # Validation helper
 ├── test_circle.py      # Unit tests
 ├── test_rectangle.py   # Unit tests
+├── assets              # images
 
 ___________________________________________________________________________________________________________________________________________________
 
@@ -37,12 +38,30 @@ ________________________________________________________________________________
 | **README.md**                                       | Explanation of class purpose and example output                        | Summarizes project structure, OOP principles used (inheritance, polymorphism, composition), and how to run tests      |
 
 
+## Comparison Operators
+#### In what context gets to decide on what is bigger? 
+
+Circle and Rectangle: 
+Area decides which shape is bigger.
+Perimeter is only used as a tiebreaker when areas match.
+
+| Concept       | What it measures                  | Units        |
+| ------------- | --------------------------------- | ------------ |
+| **Area**      | How much surface the shape covers | square units |
+| **Perimeter** | The total boundary length         | linear units |
+<br>
+Cube and Sphere:
+In 3D geometry, a cube’s size is defined by its volume, not its surface area. Surface area shows how much material covers the cube, but volume shows how much space it occupies. So comparisons should prioritize volume, with area only as a tiebreaker.
+
+
 ## translate()
+
 | Class         | Where `translate()` comes from | Behavior                                         | Prints extra info? |
 | ------------- | ------------------------------ | ------------------------------------------------ | ------------------ |
 | **Geometry**  | Original definition            | Base coordinate translation                      | No                 |
 | **Circle**    | Inherited from Geometry        | Moves the center position                        | No                 |
 | **Rectangle** | Overridden + calls `super()`   | Moves the shape and prints before/after movement | Yes                |
+
 
 ## Shape2DPlotter()
 
@@ -61,7 +80,7 @@ ________________________________________________________________________________
 
 
 ## References
-### repo 
+### repos reference 
 - https://github.com/mirzayasirabdullahbaig07/OOP-In-Python.git
 - https://github.com/GergesHany/object-oriented-programming-OOP-/tree/main/Polymorphism
 - https://github.com/MostafaAhmed98/Python_OOP_Projects
@@ -79,13 +98,13 @@ ________________________________________________________________________________
 - In javaScript but similar logic: 
 
 ### Operator Overloading 
-- Writing a rational class fraction in Python 
+- Writing a rational class fraction in Python<br>
 https://profound.academy/python-mid/fraction-class-xxyi3ExuVKFf7o8QdEjL?utm_source=chatgpt.com
 
-- Operator Overloading 
+- Operator Overloading <br>
 https://www.programiz.com/python-programming/operator-overloading?utm_source=chatgpt.com 
 
-- Operator Overloading - Magic Methods 
+- Operator Overloading - Magic Methods <br>
 https://www.youtube.com/watch?v=m2JIBytk7Hg
 
 ### Validation
@@ -95,8 +114,6 @@ https://github.com/Akina-Aoki/python_course/tree/main/14_oop_inheritance
 ### is_unit_square 
 - LLM help: https://chatgpt.com/share/6901194b-5360-8003-8e80-4df1e7a423d2
   
-### LLM Help with code
-- https://chatgpt.com/g/g-p-68f8d0c6457c819183ed667899bce738-lab-3-geometry/shared/c/68fb3998-4f6c-8331-868f-f721178c1067?owner_user_id=user-NLscVkJ6P3VkgD6x67KkiwJE
 
 ### Plotting
 - Anatomy of a figure 
@@ -106,7 +123,6 @@ https://matplotlib.org/stable/gallery/showcase/anatomy.html
 
 - https://www.geeksforgeeks.org/python/matplotlib-patches-rectangle-in-python/
 
-- Help with LLM: https://chatgpt.com/g/g-p-68f8d0c6457c819183ed667899bce738-lab-3-geometry/shared/c/6900cbdb-26d4-832b-8e84-6b5a39026b99?owner_user_id=user-NLscVkJ6P3VkgD6x67KkiwJE 
 
 - add_patch
 https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.add_patch.html#matplotlib.axes.Axes.add_patch

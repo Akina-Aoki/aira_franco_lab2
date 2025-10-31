@@ -40,7 +40,7 @@ class Rectangle(Geometry):
     - (x, y) = (width, height)
     - Inherits x and y from geometry property
     """
-    def __init__(self, x = 0, y = 0, width:float = 0, height:float = 0):
+    def __init__(self, x:float = 0 , y:float = 0, width:float = 0, height:float = 0):
         
         """
         - Reuse validation imported form validate_number
@@ -122,9 +122,12 @@ class Rectangle(Geometry):
     
     def __str__(self):
         """User-friendly display"""
-        return f"Hej! I'm a rectangle with a width of {self._width}\nand a height of {self._height}\nMy area is {self.area}.\nMy perimeter is {self.perimeter}."
+        return (f"Hej! I'm a rectangle with a width of {self._width}\n"
+                f"A height of {self._height}\n"
+                f"My area is {self.area}.\n"
+                f"My perimeter is {self.perimeter}.\n")
 
     def __repr__(self):
         """Developer-friendly display"""
-        return f"Rectangle\nwidth = {self._width}\nheight = {self._height}\n(point of origin) x = {self._x}\n(point of origin) y = {self._y}"
+        return f"Rectangle\nwidth = {self._width}\nheight = {self._height}\n(point of origin) x = {self._x}\n(point of origin) y = {self._y}\narea = {self.area}\nperimeter = {self.perimeter}"
     
