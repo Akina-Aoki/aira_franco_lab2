@@ -11,8 +11,8 @@
 
 - Modularity → creating small files or sections with reusable functions or methods.
 
-
-geometry_lab2/
+<br>
+geometry_lab2/<br>
 ├── assets              # images<br>
 ├── util.py             # Validation helper<br>
 ├── geometry.py         # Geometry parent class<br>
@@ -26,6 +26,7 @@ geometry_lab2/
 ├── test_cube.py        # Unit tests<br>
 ├── sphere.py           # Cube child class<br>
 ├── test_sphere.py      # Unit tests<br>
+├── cube_sphere_plotter.py   # plotting<br>
 
 
 
@@ -33,22 +34,21 @@ ________________________________________________________________________________
 
 ## Task 1: Circle and Rectangle
 
-| Concept / File                                      | In the GitHub repo example                                             | In your **geometry_lab2** project                                                                                     |
-| --------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Validation helper** (`util.py`)                   | Validation often done inside the class itself                          | `util.py` – defines `validate_number()` for reusable number checking, imported by all shape classes (modularity)      |
-| **Parent class** (`geometry.py`)                    | Base classes like `Animal`, `Vehicle`, etc., showing shared attributes | `Geometry` – defines `x`, `y`, `translate()`, and comparison operators for all geometric shapes                       |
-| **Child class 1** (`circle.py`)                     | Example subclasses overriding methods (e.g., `Dog.speak()`)            | `Circle` – inherits from `Geometry`; defines its own `area`, `perimeter`, and string representation                   |
-| **Child class 2** (`rectangle.py`)                  | Another subclass with its own unique behavior                          | `Rectangle` – inherits from `Geometry`; implements its own `area`, `perimeter`, `translate()`, and `is_unit_square()` |
-| **Composition class** (`plotter.py`)                | Demonstrates “has-a” relationships or object containers                | `Plotter` – holds multiple shape objects (`Circle`, `Rectangle`) and visualizes them together with `matplotlib`       |
-| **Manual test notebook 1** (`test_circle.ipynb`)    | Simple script files creating and testing instances                     | Tests for `Circle` class: creating, moving, comparing, and validating expected outputs                                |
-| **Manual test notebook 2** (`test_rectangle.ipynb`) | Similar instance tests for subclasses                                  | Tests for `Rectangle`: creation, area/perimeter checks, translation, and `is_unit_square()` logic                     |
-| **README.md**                                       | Explanation of class purpose and example output                        | Summarizes project structure, OOP principles used (inheritance, polymorphism, composition), and how to run tests      |
-
+|| Concept / File                                      | In **geometry_lab2** project                                                                                          |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Validation helper** (`util.py`)                   | `util.py` – defines `validate_number()` for reusable number checking, imported by all shape classes                  |
+| **Parent class** (`geometry.py`)                    | `Geometry` – defines `x`, `y`, `translate()`, and comparison operators for all geometric shapes                      |
+| **Child class 1** (`circle.py`)                     | `Circle` – inherits from `Geometry`; defines local `area`, `perimeter`, and string representation                    |
+| **Child class 2** (`rectangle.py`)                  | `Rectangle` – inherits from `Geometry`; implements local `area`, `perimeter`, `translate()`, and `is_unit_square()`  |
+| **Composition class** (`plotter.py`)                | `Plotter` – holds multiple shape objects (`Circle`, `Rectangle`) and visualizes them together using `matplotlib`     |
+| **Manual test notebook 1** (`test_circle.ipynb`)    | Contains tests for `Circle`: creation, movement, comparison, and validation                                           |
+| **Manual test notebook 2** (`test_rectangle.ipynb`) | Contains tests for `Rectangle`: creation, area/perimeter checks, translation, `is_unit_square()` logic               |
+| **README.md**                                       | Summarizes project structure, OOP principles (inheritance, polymorphism, composition), and instructions for testing  |
 
 ## Comparison Operators
 #### In what context gets to decide on what is bigger? 
 
-Circle and Rectangle: 
+#### Circle and Rectangle: 
 Area decides which shape is bigger.
 Perimeter is only used as a tiebreaker when areas match.
 
@@ -57,8 +57,16 @@ Perimeter is only used as a tiebreaker when areas match.
 | **Area**      | How much surface the shape covers | square units |
 | **Perimeter** | The total boundary length         | linear units |
 <br>
-Cube and Sphere:
-In 3D geometry, a cube’s size is defined by its volume, not its surface area. Surface area shows how much material covers the cube, but volume shows how much space it occupies. So comparisons should prioritize volume, with area only as a tiebreaker.
+
+#### Cube and Sphere:
+Comparisons should prioritize volume, with area only as a tiebreaker.
+
++---------------+----------------------------------------+--------------+
+| Concept       | What it measures                       | Units        |
++---------------+----------------------------------------+--------------+
+| Volume        | How much space the 3D shape occupies   | cubic units  |
+| Surface Area  | How much material covers the shape     | square units |
++---------------+----------------------------------------+--------------+
 
 
 ## translate()
@@ -147,7 +155,16 @@ https://github.com/Akina-Aoki/python_course/tree/main/14_oop_inheritance
 
 ### is_unit_square 
 - LLM help: https://chatgpt.com/share/6901194b-5360-8003-8e80-4df1e7a423d2
-  
+
+### Cube area, perimeter and volume
+- https://blog.finxter.com/5-best-ways-to-calculate-the-area-of-a-cube-using-python/
+
+- https://blog.finxter.com/5-best-ways-to-calculate-the-volume-of-a-cube-in-python/
+
+-  pytest.approx()
+https://thewebdev.info/2024/04/07/how-to-assert-almost-equal-with-python-pytest/ 
+
+
 
 ### Plotting
 - Anatomy of a figure 
@@ -174,7 +191,8 @@ https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Circle.html
 https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html
 
 - hasattr(obj, name)
-![alt text](image.png)
+https://www.geeksforgeeks.org/python/python-hasattr-method/ 
+
 
 - set_aspect
 https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_aspect.html#matplotlib.axes.Axes.set_aspect

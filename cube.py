@@ -74,10 +74,6 @@ class Cube(Geometry):
     #         METHOD
     # --------------------------
     def translate(self, x_translate, y_translate):
-        """
-        Move x and y coordinates.
-        The new values are incremented as x += x_translate and y += y_translate.
-        """
         print(f"Move the coordinates by (x += {x_translate}, y += {y_translate})")
         super().translate(x_translate, y_translate)
         print(f"New coordinates: ({self.x}, {self.y})")
