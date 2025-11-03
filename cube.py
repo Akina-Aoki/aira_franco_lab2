@@ -74,45 +74,50 @@ class Cube(Geometry):
         super().translate(x_translate, y_translate)
         print(f"New coordinates: ({self.x}, {self.y})")
 
+
     # --------------------------
     #   OPERATOR OVERLOADING
     # --------------------------
     """
-    Compare cubes by their size:
+    - A lot og bugs here: Geometry class defines default methods.
+    - Cube falls back to Geometry, but cube needs to use volume & area, not area & perimeter
+    - Override Geometry comparisons so Cube don't use area and perimeter
+    - Compare cubes by volume first, then by area if volumes are equal.
     - "==" returns True if both cubes have the same volume and area.
-    - "<" compares cubes by volume first, and area if volumes are equal.
     """
+
     def __eq__(self, other):
+        # Check that the compared object is a Cube
         if not isinstance(other, Cube):
             return NotImplemented
         # both x and y volume and area must be the same
         return self.cube_volume == other.cube_volume and self.cube_area == other.cube_area
-    
 
-    def __gt__(self, other):
-        # Check that the compared object is a Cube
-        if not isinstance(other, Cube):
-            return NotImplemented
-
-         # When cube volumes are equal,
-        # compare surface areas instead
-        if self.cube_volume == other.cube_volume:
-            return self.cube_area > other.cube_area
-
-        # When volumes differ,
-        # the cube with the larger volume is considered greater
-        return self.cube_volume > other.cube_volume
     
     def __lt__(self, other):
-        """Compare cubes by volume first, then by area if volumes are equal."""
         if not isinstance(other, Cube):
             return NotImplemented
-
         if self.cube_volume == other.cube_volume:
             return self.cube_area < other.cube_area
         return self.cube_volume < other.cube_volume
-
     
+    def __gt__(self, other):
+        if not isinstance(other, Cube):
+            return NotImplemented
+        if self.cube_volume == other.cube_volume:
+            return self.cube_area > other.cube_area
+        return self.cube_volume > other.cube_volume
+
+    def __le__(self, other):
+        if not isinstance(other, Cube):
+            return NotImplemented
+        return self == other or self < other
+    
+    def __ge__(self, other):
+        if not isinstance(other, Cube):
+            return NotImplemented
+        return self == other or self > other
+
 
 
     # --------------------------
@@ -120,11 +125,15 @@ class Cube(Geometry):
     # --------------------------
     def __str__(self):
         """User-friendly output"""
-        return (f"Hello! I'm a cube with side {self._cube_side}.\n"
+        return (f"Hello! I'm a cube with {self._cube_side} sides.\n"
                 f"My area is {self.cube_area}.\n"
                 f"My perimeter is {self.cube_perimeter}.\n"
                 f"My volume is {self.cube_volume}.")
 
     def __repr__(self):
         """Developer-friendly representation"""
-        return f"Cube(cube_side={self._cube_side}, x={self.x}, y={self.y})"
+        return (f"Cube(cube_sides = {self._cube_side}, x = {self.x}, y = {self.y})\n"
+                f"Area = {self.cube_area}\n"
+                f"Perimeter = {self.cube_perimeter}\n"
+                f"Volume = {self.cube_volume}\n"
+                )

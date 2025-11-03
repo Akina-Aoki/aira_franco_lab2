@@ -165,7 +165,7 @@ https://thewebdev.info/2024/04/07/how-to-assert-almost-equal-with-python-pytest/
 
 
 
-### Plotting
+### Plotting Circle and Rectangle 2D
 - Anatomy of a figure 
 https://matplotlib.org/stable/gallery/showcase/anatomy.html
 
@@ -201,3 +201,14 @@ https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html#matplot
 
 - ax.autoscale()
 https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.autoscale.html#matplotlib.axes.Axes.autoscale
+
+### Plotting Cube 3D
+
+- Make 3D interactive Matplotlib plot in Jupyter Notebook
+https://www.geeksforgeeks.org/python/make-3d-interactive-matplotlib-plot-in-jupyter-notebook/
+
+- Axes 3D
+https://matplotlib.org/stable/api/toolkits/mplot3d/axes3d.html#mpl_toolkits.mplot3d.axes3d.Axes3D 
+
+- mplot3d
+https://scipy-cookbook.readthedocs.io/items/Matplotlib_mplot3D.html
