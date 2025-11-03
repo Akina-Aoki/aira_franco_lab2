@@ -84,7 +84,9 @@ class Circle(Geometry):
     # --------------------------
     
     def __str__(self):
-        return f"Hi! I am a circle class with a radius of {self._radius}\nand my coordinates are ({self.x}, {self.y}\nMy area is {self.area} and my perimeter is {self.perimeter})"
+        return (f"Hi! I am a circle class with a radius of {self._radius}\n"
+               f"and my coordinates are ({self.x}, {self.y}\n"
+               f"My area is {self.area} and my perimeter is {self.perimeter})\n")
     
     def __repr__(self):
         return f"Circle\nradius = {self._radius}, x={self.x}, y={self.y}\narea = {self.area}\nperimeter = {self.perimeter})"

@@ -14,8 +14,6 @@ Computed properties and formulas:
 Methods:
 - translate(): move cube’s (x, y) coordinates, inherited from Geometry
 - comparison operators (==, <, >, etc.)
-- total_ordering decorator module automatically fills in missing operators, 
-  simplifies the development of class comparison methods.
 
 - __str__(): user-friendly text output
 - __repr__(): developer-friendly object representation
@@ -33,10 +31,8 @@ Unit Testing:
 
 from geometry import Geometry
 from util import validate_positive_number  # same helper as util.py
-from functools import total_ordering
 
 
-@total_ordering  # fills in missing comparison operators automatically
 class Cube(Geometry):
     def __init__(self, x: float = 0, y: float = 0, cube_side: float = 1):
         """
@@ -91,6 +87,7 @@ class Cube(Geometry):
             return NotImplemented
         # both x and y volume and area must be the same
         return self.cube_volume == other.cube_volume and self.cube_area == other.cube_area
+    
 
     def __gt__(self, other):
         # Check that the compared object is a Cube
@@ -105,6 +102,17 @@ class Cube(Geometry):
         # When volumes differ,
         # the cube with the larger volume is considered greater
         return self.cube_volume > other.cube_volume
+    
+    def __lt__(self, other):
+        """Compare cubes by volume first, then by area if volumes are equal."""
+        if not isinstance(other, Cube):
+            return NotImplemented
+
+        if self.cube_volume == other.cube_volume:
+            return self.cube_area < other.cube_area
+        return self.cube_volume < other.cube_volume
+
+    
 
 
     # --------------------------

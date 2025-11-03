@@ -1,13 +1,14 @@
 """
 run in terminal: pytest test_cube.py::"name of the method here" -v
-to re run: pytest test_cube.py -vv --cache-clear
+to re run all: pytest test_cube.py -vv --cache-clear
+re run but with one test:  pytest test_cube.py::"name of the method here" -vv --cache-clear
 """
 
 import pytest
 from cube import Cube
 
 
-# just a debug trigger, to check that folder is running in earlier test
+# just a debug trigger, to check that folder is running in earlier tests
 def test_run():
     pass
 
@@ -137,10 +138,34 @@ def test_cube_translate_TypeError():
 # --------------------------
 #     Comparing Cubes
 # --------------------------
+"""
+Test Cube Equality:
+As described in the intro docstrings, make sure to create Cube objects,
+not tuples.
+"""
+
 def test_cube_equal():
-    c_large =(4, 4, 4)
-    c_small = (2, 2, 4)    # side == side
-    assert c_large == c_small  # True
+    c1_large = Cube(4, 4, 4)  # 
+    c1_small = Cube(2, 2, 4)    # side == side
+    assert c1_large == c1_small  # True
+
+"""
+Test Cube B > S:
+Testing the volume of the sides first, no need to test the area since the side determines the comparison result
+"""
+def test_cube_gt():
+    c2_large = Cube(3, 4, 5)
+    c2_small = Cube(2, 2, 3)
+    assert c2_large > c2_small   # True
+
+
+"""
+Testing same voulme but different area
+"""
+def test_tiebraker():
+    c3 = Cube(1, 1, 3)
+    c4 = Cube(3, 3, 2.99) # same volume -> tiebraker -> different area
+    assert c4 < c3
 
 
 

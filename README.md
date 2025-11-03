@@ -24,6 +24,7 @@ geometry_lab2/<br>
 <br>
 ├── cube.py             # Cube child class<br>
 ├── test_cube.py        # Unit tests<br>
+├── cube_check.ipynb    # double checking <br>
 ├── sphere.py           # Cube child class<br>
 ├── test_sphere.py      # Unit tests<br>
 ├── cube_sphere_plotter.py   # plotting<br>
@@ -61,12 +62,10 @@ Perimeter is only used as a tiebreaker when areas match.
 #### Cube and Sphere:
 Comparisons should prioritize volume, with area only as a tiebreaker.
 
-+---------------+----------------------------------------+--------------+
 | Concept       | What it measures                       | Units        |
-+---------------+----------------------------------------+--------------+
+| ------------- |----------------------------------------|--------------|
 | Volume        | How much space the 3D shape occupies   | cubic units  |
 | Surface Area  | How much material covers the shape     | square units |
-+---------------+----------------------------------------+--------------+
 
 
 ## translate()
