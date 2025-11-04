@@ -84,12 +84,19 @@ class Circle(Geometry):
     # --------------------------
     
     def __str__(self):
-        return (f"Hi! I am a circle class with a radius of {self._radius}\n"
-               f"and my coordinates are ({self.x}, {self.y}\n"
-               f"My area is {self.area} and my perimeter is {self.perimeter})\n")
-    
+        """User-friendly text output"""
+        return (
+        f"Circle with radius = {self._radius}\n"
+        f"Coordinates = ({self.x}, {self.y})\n"
+        f"Area = {round(self.area, 2)}\n"
+        f"Perimeter = {round(self.perimeter, 2)}"
+         )
+
     def __repr__(self):
-        return f"Circle\nradius = {self._radius}, x={self.x}, y={self.y}\narea = {self.area}\nperimeter = {self.perimeter})"
-    
+        """Developer-friendly object output for debugging"""
+        return (
+        f"Circle(x={self.x}, y={self.y}, radius={self._radius},"
+        f"area={round(self.area, 2)}, perimeter={round(self.perimeter, 2)})"
+        )
 
 

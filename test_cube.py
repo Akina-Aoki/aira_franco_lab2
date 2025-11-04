@@ -3,14 +3,9 @@ run in terminal: pytest test_cube.py::"name of the method here" -v
 to re run all: pytest test_cube.py -vv --cache-clear
 re run but with one test:  pytest test_cube.py::"name of the method here" -vv --cache-clear
 """
-
+import math
 import pytest
 from cube import Cube
-
-
-# just a debug trigger, to check that folder is running in earlier tests
-def test_run():
-    pass
 
 
 """
@@ -22,7 +17,7 @@ def test_cube_default():
     assert c1.x == 0
     assert c1.y == 0
     assert c1.z == 0
-    assert c1.cube_side == 1
+    assert c1.cube_side == 1  # keep encapsulation clean. only touch public property 
 
 
 
@@ -31,15 +26,13 @@ Validates given inputs
 Confirms that (x, y, z) cube side == 5 are correcrt with asserted values
 """
 def test_cube_custom():
-    c3 = Cube(3, 3, 3, 5)
+    c3 = Cube(3, 3, 3, 5)  # make sure it's an object, not tuple
     assert c3.x == 3
     assert c3.y == 3
     assert c3.z == 3
     assert c3.cube_side == 5
 
-# ------------------------
-#     Test side_cube
-# ------------------------
+
 
 """
 Test for the string TypeError

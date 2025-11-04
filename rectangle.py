@@ -121,13 +121,18 @@ class Rectangle(Geometry):
     # --------------------------
     
     def __str__(self):
-        """User-friendly display"""
-        return (f"Hej! I'm a rectangle with a width of {self._width}\n"
-                f"A height of {self._height}\n"
-                f"My area is {self.area}.\n"
-                f"My perimeter is {self.perimeter}.\n")
+        """User-friendly text output for print()"""
+        return (
+        f"Rectangle with width = {self._width}\n"
+        f"Height = {self._height}\n"
+        f"Area = {round(self.area, 2)}\n"
+        f"Perimeter = {round(self.perimeter, 2)}"
+        )
 
     def __repr__(self):
-        """Developer-friendly display"""
-        return f"Rectangle\nwidth = {self._width}\nheight = {self._height}\n(point of origin) x = {self._x}\n(point of origin) y = {self._y}\narea = {self.area}\nperimeter = {self.perimeter}"
-    
+        """Developer-friendly object output for debugging"""
+        return (
+        f"Rectangle(x={self.x}, y={self.y}, "
+        f"width={self._width}, height={self._height}, "
+        f"area={round(self.area, 2)}, perimeter={round(self.perimeter, 2)})"
+        )

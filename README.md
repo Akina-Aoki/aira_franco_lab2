@@ -1,5 +1,5 @@
 # aira_franco_lab2
-## Demonstrations of these OOP concepts:
+# Demonstrations of these OOP concepts:
 
 - Encapsulation → using private attributes (_attribute and __attribute).
 
@@ -20,20 +20,20 @@ geometry_lab2/<br>
 ├── test_circle.py      # Unit tests<br>
 ├── rectangle.py        # Rectangle child class<br>
 ├── test_rectangle.py   # Unit tests<br>
-├── Shape2Dplotter.py   # plotting<br>
+├── plotter_task1.py    # plotting<br>
 <br>
 ├── cube.py             # Cube child class<br>
 ├── test_cube.py        # Unit tests<br>
 ├── cube_check.ipynb    # double checking <br>
 ├── sphere.py           # Cube child class<br>
 ├── test_sphere.py      # Unit tests<br>
-├── cube_sphere_plotter.py   # plotting<br>
+├── plotter_task2.py    # plotting<br>
 
 
 
 ___________________________________________________________________________________________________________________________________________________
 
-## Task 1: Circle and Rectangle
+# Task 1: Circle and Rectangle
 
 || Concept / File                                      | In **geometry_lab2** project                                                                                          |
 | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -84,7 +84,25 @@ Perimeter is only used as a tiebreaker when areas match.
 | **9** | Display result         | `plt.show()`             | Displays all shapes together in one coordinate grid.                                                             |
 
 ________________________________________________________________________________________________________________________________________________
-## Task 2: Cube Testing with pytest
+# Task 2: Cube and Sphere
+
+| Attribute                | Cube                             | Sphere                           | Description                                             |
+| ------------------------ | -------------------------------- | -------------------------------- | ------------------------------------------------------- |
+| **x**                    | inherited from `Geometry`        | inherited from `Geometry`        | Horizontal position on the 3D plane                     |
+| **y**                    | inherited from `Geometry`        | inherited from `Geometry`        | Vertical position on the 3D plane                       |
+| **z**                    | defined in `Cube`                | defined in `Sphere`              | Depth coordinate showing position in 3D space           |
+| **cube_side**            | unique to Cube                   | —                                | Length of one edge of the cube                          |
+| **radius**               | —                                | unique to Sphere                 | Distance from the center to the surface                 |
+| **cube_area**            | computed                         | —                                | Surface area of a cube = 6 × side²                      |
+| **sphere_area**          | —                                | computed                         | Surface area of a sphere = 4 × π × r²                   |
+| **cube_volume**          | computed                         | —                                | Volume of a cube = side³                                |
+| **sphere_volume**        | —                                | computed                         | Volume of a sphere = (4/3) × π × r³                     |
+| **cube_perimeter**       | computed                         | —                                | Total edge length of a cube = 12 × side                 |
+| **translate()**          | inherited and extended (x, y, z) | inherited and extended (x, y, z) | Moves the shape’s position in 3D space                  |
+| **comparison operators** | compares by volume, then area    | compares by volume, then area    | Defines how one shape is larger or smaller than another |
+
+
+## Cube Testing with pytest
 
 | **Area**                | **What I want to test**        | **Example**                    | **What should happen**                                      |
 | ----------------------- | ------------------------------ | ------------------------------ | ----------------------------------------------------------- |
@@ -110,22 +128,17 @@ ________________________________________________________________________________
 
 
 
-## Confusion between z (height) and cube_size
 
-| Concept     | Represents            | Example           | What changes it                   |
-| ----------- | --------------------- | ----------------- | --------------------------------- |
-| `x`         | Left/right position   | Move horizontally | `translate()`                     |
-| `y`         | Forward/back position | Move forward/back | `translate()`                     |
-| `z`         | Up/down position      | Move vertically   | `translate()`                     |
-| `cube_side` | Cube’s edge length    | Size (3 cm cube)  | Changing cube size (not position) |
 
-#### Cube and Sphere:
-Comparisons should prioritize volume, with area only as a tiebreaker.
 
-| Concept       | What it measures                       | Units        |
-| ------------- |----------------------------------------|--------------|
-| Volume        | How much space the 3D shape occupies   | cubic units  |
-| Surface Area  | How much material covers the shape     | square units |
+## Sphere (finalize the uml later *)
+| Attribute | Type  | Description                   | Source       |
+| --------- | ----- | ----------------------------- | ------------ |
+| `x`       | float | inherited, x-coordinate       | `Geometry`   |
+| `y`       | float | inherited, y-coordinate       | `Geometry`   |
+| `z`       | float | new, z-coordinate (for 3D)    | Sphere class |
+| `_radius` | float | private, radius of the sphere | Sphere class |
+
 
 
 

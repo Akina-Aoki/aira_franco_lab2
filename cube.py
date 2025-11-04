@@ -109,10 +109,11 @@ class Cube(Geometry):
     """
 
     def __eq__(self, other):
-        # Check that the compared object is a Cube
+        """ check 'other' is Cube object.
+        If not, return NotImplemented to keep running """
         if not isinstance(other, Cube):
             return NotImplemented
-        # both x and y volume and area must be the same
+        # all areas must be the same
         return self.cube_volume == other.cube_volume and self.cube_area == other.cube_area
 
     
@@ -131,6 +132,9 @@ class Cube(Geometry):
         return self.cube_volume > other.cube_volume
 
     def __le__(self, other):
+        """
+        Just uses the logic already defined in __eq__, __lt__, and __gt__
+        """
         if not isinstance(other, Cube):
             return NotImplemented
         return self == other or self < other
