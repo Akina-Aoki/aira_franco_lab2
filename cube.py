@@ -4,6 +4,7 @@ A child class representing Cube
 Attributes:
 - x : read-only (inherited from Geometry)
 - y : read-only (inherited from Geometry)
+- z : read-only (Ploymorphism)
 - cube_side (float): read-only, represents the cube's edge length
 
 Computed properties and formulas:
@@ -30,11 +31,11 @@ Unit Testing:
 """
 
 from geometry import Geometry
-from util import validate_positive_number  # same helper as util.py
+from util import validate_positive_number, validate_number  # same helper as util.py
 
 
 class Cube(Geometry):
-    def __init__(self, x: float = 0, y: float = 0, cube_side: float = 1):
+    def __init__(self, x: float = 0, y: float = 0, z:float = 0, cube_side: float = 1):
         """
         Initialize a Cube object with position (x, y) and cube_side.
         Validates that cube_side is a positive number using validate_positive().
@@ -42,10 +43,19 @@ class Cube(Geometry):
         super().__init__(x, y)
         validate_positive_number(cube_side)
         self._cube_side = cube_side
+        # add the new attribute for z
+        self._z = z
+
 
     # -------------------------
     #        PROPERTY
     # -------------------------
+
+    @property
+    def z(self):
+        """Added a read-only z coordinate for height to move in 3D."""
+        return self._z
+
     @property
     def cube_side(self):
         """Read-only edge length of the cube"""
@@ -69,10 +79,22 @@ class Cube(Geometry):
     # --------------------------
     #         METHOD
     # --------------------------
-    def translate(self, x_translate, y_translate):
-        print(f"Move the coordinates by (x += {x_translate}, y += {y_translate})")
-        super().translate(x_translate, y_translate)
-        print(f"New coordinates: ({self.x}, {self.y})")
+    """
+    - Cube needs (x, y, z) coordinates since Cube is a 3D space. Cube only inherited (x, y)
+    - Add height attribute = z to make translate() work in 3D 
+    """
+    def translate(self, x_translate, y_translate, z_translate):
+        print(f"Move the coordinates by (x += {x_translate}, y += {y_translate}, z +=  {z_translate})")
+
+        # Validation for coordiantes from util.py, negatives are OK
+        for value in (x_translate, y_translate, z_translate):
+            validate_number(value)
+
+        # this is inherited from Geometry class
+        super().translate(x_translate, y_translate) 
+        # Polymorphism z here, 
+        self._z += z_translate
+        print(f"New coordinates: ({self.x}, {self.y}, {self.z})")
 
 
     # --------------------------
@@ -125,14 +147,16 @@ class Cube(Geometry):
     # --------------------------
     def __str__(self):
         """User-friendly output"""
-        return (f"Hello! I'm a cube with {self._cube_side} sides.\n"
+        return (f"Hello! I'm a cube.\n"
+                f"x = {self.x}, y = {self.y}, z = {self.z})\n"
+                f"{self._cube_side} sides.\n"
                 f"My area is {self.cube_area}.\n"
                 f"My perimeter is {self.cube_perimeter}.\n"
                 f"My volume is {self.cube_volume}.")
 
     def __repr__(self):
         """Developer-friendly representation"""
-        return (f"Cube(cube_sides = {self._cube_side}, x = {self.x}, y = {self.y})\n"
+        return (f"Cube(cube_sides = {self._cube_side}, x = {self.x}, y = {self.y}, z = {self.z})\n"
                 f"Area = {self.cube_area}\n"
                 f"Perimeter = {self.cube_perimeter}\n"
                 f"Volume = {self.cube_volume}\n"

@@ -59,14 +59,6 @@ Perimeter is only used as a tiebreaker when areas match.
 | **Perimeter** | The total boundary length         | linear units |
 <br>
 
-#### Cube and Sphere:
-Comparisons should prioritize volume, with area only as a tiebreaker.
-
-| Concept       | What it measures                       | Units        |
-| ------------- |----------------------------------------|--------------|
-| Volume        | How much space the 3D shape occupies   | cubic units  |
-| Surface Area  | How much material covers the shape     | square units |
-
 
 ## translate()
 
@@ -94,26 +86,46 @@ Comparisons should prioritize volume, with area only as a tiebreaker.
 ________________________________________________________________________________________________________________________________________________
 ## Task 2: Cube Testing with pytest
 
-| **Area**            | **What I want to test**   | **Example**                | **What should happen**                  |
-| ------------------- | ------------------------- | -------------------------- | --------------------------------------- |
-| **Creating a cube** | Try default values        | `Cube()`                   | Should make a cube at (0,0) with side 1 |
-|                     | Try custom values         | `Cube(2, 3, 6)`            | Should set x = 2, y = 3, cube_side = 6  |
-|                     | Side = 0                  | `Cube(0, 0, 0)`            | Should give ValueError                  |
-|                     | Side is negative          | `Cube(0, 0, -4)`           | Should give ValueError                  |
-|                     | Side is not a number      | `Cube(0, 0, "five")`       | Should give TypeError                   |
-|-------------------- | ------------------------- |--------------------------- | --------------------------------------- |
-| **Properties**      | Check area formula        | side = 2,  6 × 2²          | Should return 24                        |
-|                     | Check perimeter formula   | side = 2,  12 × 2          | Should return 24                        |
-|                     | Check volume formula      | side = 3,  3³              | Should return 27                        |
-|                     | Try a float value         | side = 2.5                 | Should still work and return decimals   |
-|-------------------- | ------------------------- |--------------------------- | --------------------------------------- |
-| **Translate**       | Move once                 | `translate(2, 3)`          | x and y should become (2, 3)            |
-|                     | Use wrong type            | `translate("a", 5)`        | Should give TypeError                   |
-|-------------------- | ------------------------- |--------------------------- | --------------------------------------- |
-| **Comparing cubes** | Equal cubes               | same side = equal          | Should return True                      |
-|                     | Bigger vs smaller cube    | side 3 vs side 2           | Should return >                         |
-|                     | Same volume but diff area | compare both               | Should compare by area as tiebraker     |
+| **Area**                | **What I want to test**        | **Example**                    | **What should happen**                                      |
+| ----------------------- | ------------------------------ | ------------------------------ | ----------------------------------------------------------- |
+| **Creating a cube**     | Try default values             | `Cube()`                       | Should create a cube at (0, 0, 0) with side = 1             |
+|                         | Try custom values              | `Cube(2, 3, 4, 6)`             | Should set x = 2, y = 3, z = 4, cube_side = 6               |
+|                         | Side = 0                       | `Cube(0, 0, 0, 0)`             | Should raise **ValueError** (side can’t be 0)               |
+|                         | Side is negative               | `Cube(0, 0, 0, -4)`            | Should raise **ValueError** (side can’t be negative)        |
+|                         | Side is not a number           | `Cube(0, 0, 0, "five")`        | Should raise **TypeError**                                  |
+| ----------------------- | -----------------------------  | ------------------------------ | ----------------------------------------------------------- |
+| **Properties**          | Check area formula             | side = 2 → 6 × 2²              | Should return **24**                                        |
+|                         | Check perimeter formula        | side = 2 → 12 × 2              | Should return **24**                                        |
+|                         | Check volume formula           | side = 3 → 3³                  | Should return **27**                                        |
+|                         | Try a float value              | side = 2.5                     | Should work and return decimals (e.g. **15.625** volume)    |
+| ----------------------- | -----------------------------  | ------------------------------ | ----------------------------------------------------------- |
+| **Translate (3D)**      | Move all axes (x, y, z)        | `translate(2, 3, 4)`           | x = 2, y = 3, z = 4 (moved correctly in 3D space)           |
+|                         | Move only x and y              | `translate(1, 1)`              | z should stay the same                                      |
+|                         | Move only z                    | `translate(0, 0, 2)`           | Only z should increase by 2                                 |
+|                         | Use wrong type                 | `translate("a", 5, 1)`         | Should raise **TypeError**                                  |
+| ----------------------- | -----------------------------  | ------------------------------ | ----------------------------------------------------------- |
+| **Comparing cubes**     | Equal cubes                    | same side = equal              | Should return **True**                                      |
+|                         | Bigger vs smaller cube         | side 3 vs side 2               | Should return **True** for cube with larger volume          |
+|                         | Same volume but different area | e.g. 3 vs 2.99 (slight diff)   | Should compare by **area as tiebreaker**                    |
 
+
+
+## Confusion between z (height) and cube_size
+
+| Concept     | Represents            | Example           | What changes it                   |
+| ----------- | --------------------- | ----------------- | --------------------------------- |
+| `x`         | Left/right position   | Move horizontally | `translate()`                     |
+| `y`         | Forward/back position | Move forward/back | `translate()`                     |
+| `z`         | Up/down position      | Move vertically   | `translate()`                     |
+| `cube_side` | Cube’s edge length    | Size (3 cm cube)  | Changing cube size (not position) |
+
+#### Cube and Sphere:
+Comparisons should prioritize volume, with area only as a tiebreaker.
+
+| Concept       | What it measures                       | Units        |
+| ------------- |----------------------------------------|--------------|
+| Volume        | How much space the 3D shape occupies   | cubic units  |
+| Surface Area  | How much material covers the shape     | square units |
 
 
 
