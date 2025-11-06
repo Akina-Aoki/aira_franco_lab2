@@ -13,21 +13,27 @@
 
 <br>
 geometry_lab2/<br>
-├── assets              # images<br>
+├── assets              # images UML<br>
 ├── util.py             # Validation helper<br>
 ├── geometry.py         # Geometry parent class<br>
+<br>
+Task 1:
+<br>
 ├── circle.py           # Circle child class<br>
 ├── test_circle.py      # Unit tests<br>
+├── test_circle.ipynb   # Manual tests<br>
 ├── rectangle.py        # Rectangle child class<br>
 ├── test_rectangle.py   # Unit tests<br>
+├── test_rectangle.ipynb   # Manual tests<br>
 ├── plotter_task1.py    # plotting for circle and rectangle<br>
+<br>
+Task 2:
 <br>
 ├── cube.py             # Cube child class<br>
 ├── test_cube.py        # Unit tests<br>
 ├── cube_check.ipynb    # double checking <br>
 ├── sphere.py           # Cube child class<br>
 ├── test_sphere.py      # Unit tests<br>
-├── *plotter_task2.py   # plotting just for cube 3d JUST FOR FUN<br>
 
 
 
@@ -63,14 +69,7 @@ Perimeter is only used as a tiebreaker when areas match.
 <br>
 
 
-## translate()
-
-| Class         | Where `translate()` comes from | Behavior                                         | Prints extra info? |
-| ------------- | ------------------------------ | ------------------------------------------------ | ------------------ |
-| **Geometry**  | Original definition            | Base coordinate translation                      | No                 |
-| **Circle**    | Inherited from Geometry        | Moves the center position                        | No                 |
-| **Rectangle** | Overridden + calls `super()`   | Moves the shape and prints before/after movement | Yes                |
-
+## Overview of Circle Class
 
 | **Category**                         | **Feature / Case**       | **Example Input**                       | **Expected Behavior / Assertion**                            |
 | ------------------------------------ | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
@@ -91,6 +90,18 @@ Perimeter is only used as a tiebreaker when areas match.
 |                                      | Invalid input types      | `c.translate("a", 5)`                   | `TypeError`                                                  |
 | **8️   String Representation**        | User-friendly print      | `print(c)`                              | Should display radius, area, perimeter nicely                |
 |                                      | Developer print          | `repr(c)`                               | Returns clear dev format: `Circle(x=..., y=..., radius=...)` |
+
+
+## Overview of Rectangle Class
+
+
+## translate()
+
+| Class         | Where `translate()` comes from | Behavior                                         | Prints extra info? |
+| ------------- | ------------------------------ | ------------------------------------------------ | ------------------ |
+| **Geometry**  | Original definition            | Base coordinate translation                      | No                 |
+| **Circle**    | Inherited from Geometry        | Moves the center position                        | No                 |
+| **Rectangle** | Overridden + calls `super()`   | Moves the shape and prints before/after movement | Yes                |
 
 
 ## Unit Testing for Circle and Rectangle
