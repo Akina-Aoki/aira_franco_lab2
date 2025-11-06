@@ -40,12 +40,12 @@ class Geometry:
 
     # read only x property
     @property
-    def x(self):
+    def x(self)->Number:
         return self._x
     
     # read only y property
     @property
-    def y(self):
+    def y(self)->Number:
         return self._y
 
 
@@ -113,14 +113,14 @@ class Geometry:
     #      REPRESENTATION
     # --------------------------
     
-    def __str__(self):
+    def __str__(self)->str:
         """
-        user-friendly string display
+        User-friendly string display
         """
         return f"Hello! My name is Geometry. I'm the parent class. hohoho!\nMy coordinates are({self.x}, {self.y})"
     
-    def __repr__(self):
+    def __repr__(self)->str:
         """
-        developer string display (for debugging)
+        Developer string display (for debugging)
         """
         return f"Geometry(parent class)\n(x = {self.x}, y = {self.y})"

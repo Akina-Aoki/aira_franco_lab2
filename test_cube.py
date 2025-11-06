@@ -3,7 +3,6 @@ run in terminal: pytest test_cube.py::"name of the method here" -v
 to re run all: pytest test_cube.py -vv --cache-clear
 re run but with one test:  pytest test_cube.py::"name of the method here" -vv --cache-clear
 """
-import math
 import pytest
 from cube import Cube
 
@@ -39,24 +38,22 @@ Test for the string TypeError
 """
 
 def test_side_cube_invalid_string():
-    with pytest.raises(TypeError) as error:
+    with pytest.raises(TypeError):
         Cube(1, 1, 1, "string")
-        print(error.value) # show type error message
 
 
 """Test for the negative ValueError"""
 def test_side_cube_invalid_negative():
-    with pytest.raises(ValueError) as error:
+    with pytest.raises(ValueError):
         Cube(2, 2, 2, -4)
-        print(error.value)
+
 
 
 
 """Test for the 0 ValueError"""
 def test_side_cube_invalid_zero():
-    with pytest.raises(ValueError) as error:
+    with pytest.raises(ValueError):
         Cube(2, 2, 2, 0)
-        print(error.value)
 
 
 # ----------------------------
@@ -117,7 +114,7 @@ def test_cube_float():
 #       Test Translate()
 # -------------------------------
 
-"""Move x and y coordiantes, check the asserted values pass"""
+"""Move x, y and z coordiantes, check the asserted values pass"""
 def test_cube_translate_pass():
     c5 = Cube(5, 5, 5, 5)  #(x, y, z, sides)
     # from the cube.py, use translate() here to move coordinates by x, y+= 1
@@ -126,7 +123,6 @@ def test_cube_translate_pass():
     assert c5.y == 6
     assert c5.z == 6 
 
-    print(f"New coordinates: ({c5.x},{c5.y}, {c5.z})")
 
 """Failed translate(), TypeError because of str"""
 def test_cube_translate_TypeError():
@@ -138,31 +134,24 @@ def test_cube_translate_TypeError():
 # --------------------------
 #     Comparing Cubes
 # --------------------------
-"""
-Test Cube Equality:
-As described in the intro docstrings, make sure to create Cube objects,
-not tuples.
-"""
 
 def test_cube_equal():
+    """ Test Cube Equality: As described in the intro docstrings, 
+    make sure to create Cube objects, not tuples."""
     c1_large = Cube(4, 4, 4, 4)  
     c1_small = Cube(2, 2, 2, 4)    # side == side
     assert c1_large == c1_small  # True
 
-"""
-Test Cube B > S:
-Testing the volume of the sides first, no need to test the area since the side determines the comparison result
-"""
+    """ Test Cube B > S:
+    Testing the volume of the sides first, no need to test the area since the side determines the comparison result """
 def test_cube_gt():
     c2_large = Cube(1, 3, 4, 5)
     c2_small = Cube(1, 2, 2, 3)
     assert c2_large > c2_small   # True
 
 
-"""
-Testing same voulme but different area
-"""
 def test_tiebraker():
+    """ Testing same voulme but different area """
     c3 = Cube(1, 1, 1, 3)
     c4 = Cube(3, 3, 3, 2.99) # same volume -> tiebraker -> different area
     assert c4 < c3

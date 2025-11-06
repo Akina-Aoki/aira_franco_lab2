@@ -29,7 +29,8 @@ A child class representing Rectangle
 
 from geometry import Geometry
 from util import validate_positive_number
-import math
+
+
 
 
 class Rectangle(Geometry):
@@ -66,22 +67,22 @@ class Rectangle(Geometry):
     # --------------------------
     """- x and y representing the center position of the object"""
     @property
-    def width(self):
+    def width(self) -> float:
     # width rectangle read-only property
         return self._width
 
     @property
-    def height(self):
+    def height(self) -> float:
     # height rectangle read-only property
         return self._height
 
     @property
-    def area(self):
+    def area(self) -> float:
         # calculate rectangle area
         return self._width * self._height
 
     @property
-    def perimeter(self):
+    def perimeter(self) -> float:
     # calculate rectangle perimeter
         return 2 * (self._width + self._height)
 
@@ -120,7 +121,7 @@ class Rectangle(Geometry):
     #      REPRESENTATION
     # --------------------------
     
-    def __str__(self):
+    def __str__(self) -> str:
         """User-friendly text output for print()"""
         return (
         f"Rectangle with width = {self._width}\n"
@@ -129,7 +130,7 @@ class Rectangle(Geometry):
         f"Perimeter = {round(self.perimeter, 2)}"
         )
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Developer-friendly object output for debugging"""
         return (
         f"Rectangle(x={self.x}, y={self.y}, "

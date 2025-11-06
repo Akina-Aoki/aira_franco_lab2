@@ -20,14 +20,14 @@ geometry_lab2/<br>
 ├── test_circle.py      # Unit tests<br>
 ├── rectangle.py        # Rectangle child class<br>
 ├── test_rectangle.py   # Unit tests<br>
-├── plotter_task1.py    # plotting<br>
+├── plotter_task1.py    # plotting for circle and rectangle<br>
 <br>
 ├── cube.py             # Cube child class<br>
 ├── test_cube.py        # Unit tests<br>
 ├── cube_check.ipynb    # double checking <br>
 ├── sphere.py           # Cube child class<br>
 ├── test_sphere.py      # Unit tests<br>
-├── plotter_task2.py    # plotting<br>
+├── *plotter_task2.py   # plotting just for cube 3d JUST FOR FUN<br>
 
 
 
@@ -35,20 +35,23 @@ ________________________________________________________________________________
 
 # Task 1: Circle and Rectangle
 
-|| Concept / File                                      | In **geometry_lab2** project                                                                                          |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Validation helper** (`util.py`)                   | `util.py` – defines `validate_number()` for reusable number checking, imported by all shape classes                  |
-| **Parent class** (`geometry.py`)                    | `Geometry` – defines `x`, `y`, `translate()`, and comparison operators for all geometric shapes                      |
-| **Child class 1** (`circle.py`)                     | `Circle` – inherits from `Geometry`; defines local `area`, `perimeter`, and string representation                    |
-| **Child class 2** (`rectangle.py`)                  | `Rectangle` – inherits from `Geometry`; implements local `area`, `perimeter`, `translate()`, and `is_unit_square()`  |
-| **Composition class** (`plotter.py`)                | `Plotter` – holds multiple shape objects (`Circle`, `Rectangle`) and visualizes them together using `matplotlib`     |
-| **Manual test notebook 1** (`test_circle.ipynb`)    | Contains tests for `Circle`: creation, movement, comparison, and validation                                           |
-| **Manual test notebook 2** (`test_rectangle.ipynb`) | Contains tests for `Rectangle`: creation, area/perimeter checks, translation, `is_unit_square()` logic               |
-| **README.md**                                       | Summarizes project structure, OOP principles (inheritance, polymorphism, composition), and instructions for testing  |
+```text
+| Concept / File                         | In **geometry_lab2** project                                                |
+| -------------------------------------- | --------------------------------------------------------------------------- |
+| **Validation helper** (`util.py`)      | Checks numbers for reuse in all shapes                                      |
+| **Parent class** (`geometry.py`)       | Base class with `x`, `y`, `translate()`, and comparison methods             |
+| **Child class 1** (`circle.py`)        | Adds circle formulas for `area`, `perimeter`, and print info                |
+| **Child class 2** (`rectangle.py`)     | Adds rectangle formulas and `is_unit_square()` check                        |
+| **Composition** (`Shape2Dplotter.py`)  | Combines `Circle` and `Rectangle` to plot them with `matplotlib`            |
+| **Manual test** (`test_circle.ipynb`)  | Tests `Circle` interactively: creation, move, compare, and errors           |
+| **Manualtest** (`test_rectangle.ipynb`)| Tests `Rectangle`: area, move, and square check                             |
+| **Unit test** (`test_circle.py`)       | Pytest for `Circle`: values, invalid input, and comparisons                 |
+| **Unit test** (`test_rectangle.py`)    | Pytest for `Rectangle`: size, errors, move, and methods                     |
+| **README.md**                          | Overview of classes, structure, and tests                                   |
+```
 
-## Comparison Operators
+
 #### In what context gets to decide on what is bigger? 
-
 #### Circle and Rectangle: 
 Area decides which shape is bigger.
 Perimeter is only used as a tiebreaker when areas match.
@@ -67,6 +70,42 @@ Perimeter is only used as a tiebreaker when areas match.
 | **Geometry**  | Original definition            | Base coordinate translation                      | No                 |
 | **Circle**    | Inherited from Geometry        | Moves the center position                        | No                 |
 | **Rectangle** | Overridden + calls `super()`   | Moves the shape and prints before/after movement | Yes                |
+
+
+| **Category**                         | **Feature / Case**       | **Example Input**                       | **Expected Behavior / Assertion**                            |
+| ------------------------------------ | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
+| **1️   Creation / Constructor**       | Default circle           | `Circle()`                              | x=0, y=0, radius=1                                           |
+|                                      | Custom circle            | `Circle(2, 3, 5)`                       | x=2, y=3, radius=5                                           |
+|                                      | Negative or zero radius  | `Circle(1, 1, 0)` or `Circle(1, 1, -3)` | `ValueError` (radius must be positive)                       |
+|                                      | Non-numeric radius       | `Circle(1, 1, "abc")`                   | `TypeError`                                                  |
+| **2️   Properties (Read-Only)**       | Radius is read-only      | `c = Circle(); c.radius = 5`            | Should raise `AttributeError`                                |
+| **3️   Computed Properties**          | Area formula             | `Circle(0,0,2)`                         | `area == π * 2²` (≈12.566)                                   |
+|                                      | Perimeter formula        | `Circle(0,0,2)`                         | `perimeter == 2 * π * 2` (≈12.566)                           |
+| **4️   Validation of Coordinates**    | Negative x/y allowed     | `Circle(-1, -2, 3)`                     | Works normally (no error)                                    |
+|                                      | Zero coordinates allowed | `Circle(0, 0, 3)`                       | Works normally                                               |
+| **   Unit Circle Check**            | True if unit circle      | `Circle(0, 0, 1)`                       | `is_unit_circle()` → `True`                                  |
+|                                      | False if not unit circle | `Circle(1, 0, 1)` or `Circle(0, 0, 2)`  | `is_unit_circle()` → `False`                                 |
+| **6️   Comparison Operators**         | Equal circles            | Two circles with same radius            | `c1 == c2` → `True`                                          |
+|                                      | Greater / smaller area   | radius 3 vs radius 2                    | `c1 > c2` → `True`; `c2 < c1` → `True`                       |
+| **7️   Translate Method (Inherited)** | Move coordinates         | `c.translate(2, 3)`                     | x increases by 2, y increases by 3                           |
+|                                      | Invalid input types      | `c.translate("a", 5)`                   | `TypeError`                                                  |
+| **8️   String Representation**        | User-friendly print      | `print(c)`                              | Should display radius, area, perimeter nicely                |
+|                                      | Developer print          | `repr(c)`                               | Returns clear dev format: `Circle(x=..., y=..., radius=...)` |
+
+
+## Unit Testing for Circle and Rectangle
+
+| **Class**                  | **What I want to test**                       |
+| -------------------------- | --------------------------------------------- |
+| **Creating a circle**      | Default, custom, zero, negative, wrong type   |
+| **Properties**             | Area, perimeter, float values                 |
+| **Translate (2D)**         | Moving coordinates, invalid input types       |
+| **Comparing circles**      | Equal, larger, smaller comparisons            |
+| -------------------------- | --------------------------------------------- |
+| **Creating a rectangle**   | Default, custom, wrong types                  |
+| **Properties**             | Area, perimeter, unit square check            |
+| **Translate (2D)**         | Moving coordinates, invalid input types       |
+| **Comparing rectangles**   | Equal, larger, smaller comparisons            |
 
 
 ## Shape2DPlotter()
@@ -102,7 +141,7 @@ ________________________________________________________________________________
 | **comparison operators** | compares by volume, then area    | compares by volume, then area    | Defines how one shape is larger or smaller than another |
 
 
-## Cube Testing with pytest
+## Cube Unit Testing with pytest
 
 | **Area**                | **What I want to test**        | **Example**                    | **What should happen**                                      |
 | ----------------------- | ------------------------------ | ------------------------------ | ----------------------------------------------------------- |

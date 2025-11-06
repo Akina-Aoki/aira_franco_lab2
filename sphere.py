@@ -1,6 +1,7 @@
 from geometry import Geometry
 from util import validate_positive_number, validate_number
 import math
+from numbers import Number
 
 """
 Child class for Sphere in 3D
@@ -21,7 +22,7 @@ Methods:
 
 class Sphere(Geometry):
     # Create Sphere object
-    def __init__(self, x:float = 0, y:float = 0, z:float = 0, radius = 1):
+    def __init__(self, x:float|int = 0, y:float|int = 0, z:float|int = 0, radius:Number = 1):
         # validate z
         validate_number(z)
 
@@ -40,22 +41,22 @@ class Sphere(Geometry):
 # ----------------------------
 
     @property
-    def z(self):
+    def z(self) -> float|int:
         """Read-only"""
         return self._z
     
     @property
-    def radius(self):
+    def radius(self) -> float|int:
         """Read-only"""
         return self._radius
     
     @property
-    def sphere_area(self):
+    def sphere_area(self) -> float|int:
         """read-only calculated values"""
         return 4 * math.pi * (self._radius ** 2)
     
     @property
-    def sphere_volume(self):
+    def sphere_volume(self) -> float|int:
         """read-only calculated values"""
         return (4/3) * math.pi * (self._radius ** 3)
     
@@ -64,14 +65,18 @@ class Sphere(Geometry):
 # ----------------------------
 
     def translate(self, x_translate, y_translate, z_translate):
-        """
-        Move the sphere in space.
-        Adds to the current x, y, z coordinates
-        """
+        """Move the sphere in space with full validation for all coordinates."""
+        validate_number(x_translate)
+        validate_number(y_translate)
+        validate_number(z_translate)
+
         print(f"Move sphere by (x += {x_translate}, y += {y_translate}, z += {z_translate})")
+
         super().translate(x_translate, y_translate)
         self._z += z_translate
+
         print(f"New coordinates: ({self.x}, {self.y}, {self.z})")
+
 
 # ----------------------------------
 #       COMPARISON OPERATORS
@@ -120,15 +125,19 @@ class Sphere(Geometry):
 #          REPRESENTATION
 # -------------------------------
 
-    def __str__(self):
+    def __str__(self)->str:
         """User-friendly text output"""
-        return (
-            f"Sphere with radius = {self._radius}\n"
+        return (f"Hello! I'm a sphere\n"
+            f"x = {self.x}, y = {self.y}, z = {self.z}\n"
+            f"Sphere radius = {round(self._radius, 2)}\n"
             f"Volume = {round(self.sphere_volume, 2)}\n"
             f"Area = {round(self.sphere_area, 2)}"
         )
 
-    def __repr__(self):
+    def __repr__(self)->str:
         """Developer-friendly object output for debugging"""
-        return f"Sphere(x={self.x}, y={self.y}, z={self.z}, radius={self._radius})"
+        return (f"Sphere(x = {self.x}, y = {self.y}, z = {self.z}, radius = {self._radius})\n"
+                f"Area = {(self.sphere_area, 2)}\n"
+                f"Volume = {(self.sphere_volume, 2)}\n"
+        )
 

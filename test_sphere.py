@@ -1,7 +1,7 @@
 """
-run in terminal: pytest test_cube.py::"name of the method here" -v
-to re run all: pytest test_cube.py -vv --cache-clear
-re run but with one test:  pytest test_cube.py::"name of the method here" -vv --cache-clear
+run in terminal: pytest test_sphere.py::"name of the method here" -v
+to re run all: pytest test_sphere.py -vv --cache-clear
+re run but with one test:  pytest test_sphere.py::"name of the method here" -vv --cache-clear
 """
 import math
 import pytest
@@ -34,23 +34,20 @@ def test_sphere_custom():
 Test for the string TypeError
 """
 def test_sphere_invalid_string():
-    with pytest.raises(TypeError) as error:
+    with pytest.raises(TypeError):
         Sphere(0, 0, 1, "string")
-        print(error.value) # show type error message
 
 """Test for the negative ValueError"""
 def test_sphere_invalid_negative():
-    with pytest.raises(ValueError) as error:
+    with pytest.raises(ValueError):
         Sphere(2, 2, 2, -4)
-        print(error.value)
 
 
 
 """Test for the 0 ValueError"""
-def test_side_cube_invalid_zero():
-    with pytest.raises(ValueError) as error:
+def test_side_sphere_invalid_zero():
+    with pytest.raises(ValueError):
         Sphere(2, 2, 2, 0)
-        print(error.value)
 
 
 # ----------------------------
@@ -68,3 +65,70 @@ def test_sphere_volume():
     s3 = Sphere(2, 2, 2, 2)
     expected = (4/3) * math.pi * (s3.radius ** 3)
     assert s3.sphere_volume == pytest.approx(expected)
+
+
+# -------------------------------
+#       Test Translate()
+# -------------------------------
+
+"""Move x, y and z coordiantes, check the asserted values pass"""
+def test_sphere_translate():
+    s4 = Sphere(0, 0, 1, 2)  
+    s4.translate(1, 1, 1)   
+    assert s4.x == 1  
+    assert s4.y == 1
+    assert s4.z == 2 
+
+
+"""Failed translate(), TypeError because of str"""
+def test_sphere_translate_TypeError():
+    s4 = Sphere(0, 0, 1, 2)
+    with pytest.raises(TypeError):
+        s4.translate(0, 1, "one")
+
+
+# --------------------------
+#     Comparing Spheres
+# --------------------------
+
+def test_sphere_equal_pass():
+    """Test Sphere Equality"""
+    a = Sphere(4, 4, 4, 4)  
+    b = Sphere(2, 2, 2, 4)    # side == side
+    assert a == b  # True
+
+def test_sphere_equal_fail():
+    """Test Sphere Equality"""
+    c = Sphere(4, 4, 4, 4)  
+    d = Sphere(2, 2, 2, 4)    # side == side
+    assert c != d  # False
+
+
+def test_sphere_gt_pass():
+    """ Test Cube B > S:
+    Testing the volume of the sides first, 
+    no need to test the area since the side determines the comparison result """
+    s2_large = Sphere(1, 3, 4, 5)
+    s2_small = Sphere(1, 2, 2, 3)
+    assert s2_large > s2_small   # True
+
+def test_sphere_gt_fail():
+    """ Test Cube B > S:
+    Testing the volume of the sides first, 
+    no need to test the area since the side determines the comparison result """
+    s2_large = Sphere(1, 3, 4, 5)
+    s2_small = Sphere(1, 2, 2, 3)
+    assert s2_large < s2_small
+
+
+def test_tiebraker_pass():
+    """ Testing same voulme but different area """
+    s3_small = Sphere(1, 1, 1, 3)
+    s4_large = Sphere(3, 3, 3, 2.99) # same volume -> tiebraker -> different area
+    assert s4_large < s3_small
+
+def test_tiebraker_fail():
+    """ Testing same voulme but different area """
+    s3_small = Sphere(1, 1, 1, 3)
+    s4_large = Sphere(3, 3, 3, 2.99) # same volume -> tiebraker -> different area
+    assert s4_large > s3_small

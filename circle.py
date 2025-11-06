@@ -27,9 +27,10 @@ A child class representing Circle
 from geometry import Geometry
 from util import validate_positive_number
 import math
+from numbers import Number
 
 class Circle(Geometry):
-    def __init__(self, x = 0, y = 0, radius:float = 1):
+    def __init__(self, x:float = 0, y:float = 0, radius:float = 1):
         """
         - Validates that radius is a number imported from (validate_positive_number from util.py).
         - Inherit with super().__init__() to reuse code from Geometry.
@@ -42,6 +43,7 @@ class Circle(Geometry):
         - no circle that radius = 0 exists or below, ValueError
         """
         super().__init__(x,y)
+        # validate radius
         validate_positive_number(radius)
         # assign attributes
         self._radius = radius
@@ -50,17 +52,17 @@ class Circle(Geometry):
     #        PROPERTY
     # -------------------------
     @property
-    def radius(self):
+    def radius(self) -> Number: 
         """ radius read-only, cannot change radius"""
         return self._radius
     
     @property
-    def area(self):
+    def area(self) -> Number:
         """calcualtes area, formula:  π * r^2 """
         return math.pi * self._radius ** 2
     
     @property
-    def perimeter(self):
+    def perimeter(self) -> Number:
         """calcualtes perimeter (circumference), formula: 2 * π * r"""
         return 2 * math.pi * self._radius
 
@@ -68,7 +70,7 @@ class Circle(Geometry):
     # --------------------------
     #         METHOD
     # --------------------------
-    def is_unit_circle(self):
+    def is_unit_circle(self) -> bool:
         """
         - Checks if the circle is a unit circle
         - If unit is circle = True
@@ -83,7 +85,7 @@ class Circle(Geometry):
     #      REPRESENTATION
     # --------------------------
     
-    def __str__(self):
+    def __str__(self) -> str:
         """User-friendly text output"""
         return (
         f"Circle with radius = {self._radius}\n"
@@ -92,11 +94,11 @@ class Circle(Geometry):
         f"Perimeter = {round(self.perimeter, 2)}"
          )
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Developer-friendly object output for debugging"""
         return (
         f"Circle(x={self.x}, y={self.y}, radius={self._radius},"
-        f"area={round(self.area, 2)}, perimeter={round(self.perimeter, 2)})"
+        f"area={(self.area, 2)}, perimeter={(self.perimeter, 2)})"
         )
 
 

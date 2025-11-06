@@ -34,8 +34,9 @@ from geometry import Geometry
 from util import validate_positive_number, validate_number  # same helper as util.py
 
 
+
 class Cube(Geometry):
-    def __init__(self, x: float = 0, y: float = 0, z:float = 0, cube_side: float = 1):
+    def __init__(self, x: float|int = 0, y: float|int = 0, z:float|int = 0, cube_side: float|int = 1):
         """
         Initialize a Cube object with position (x, y) and cube_side.
         Validates that cube_side is a positive number using validate_positive().
@@ -52,27 +53,27 @@ class Cube(Geometry):
     # -------------------------
 
     @property
-    def z(self):
+    def z(self) -> float|int:
         """Added a read-only z coordinate for height to move in 3D."""
         return self._z
 
     @property
-    def cube_side(self):
+    def cube_side(self)-> float|int:
         """Read-only edge length of the cube"""
         return self._cube_side
 
     @property
-    def cube_area(self):
+    def cube_area(self)-> float|int:
         """Total surface area = 6 × side²"""
         return 6 * (self._cube_side ** 2)
 
     @property
-    def cube_perimeter(self):
+    def cube_perimeter(self)-> float|int:
         """Total edge length = 12 × side"""
         return 12 * self._cube_side
 
     @property
-    def cube_volume(self):
+    def cube_volume(self)-> float|int:
         """Space occupied = side³"""
         return self._cube_side ** 3
 
@@ -92,6 +93,7 @@ class Cube(Geometry):
 
         # this is inherited from Geometry class
         super().translate(x_translate, y_translate) 
+        
         # Polymorphism z here, 
         self._z += z_translate
         print(f"New coordinates: ({self.x}, {self.y}, {self.z})")
@@ -149,16 +151,16 @@ class Cube(Geometry):
     # --------------------------
     #      REPRESENTATION
     # --------------------------
-    def __str__(self):
+    def __str__(self)-> str:
         """User-friendly output"""
         return (f"Hello! I'm a cube.\n"
                 f"x = {self.x}, y = {self.y}, z = {self.z})\n"
                 f"{self._cube_side} sides.\n"
-                f"My area is {self.cube_area}.\n"
-                f"My perimeter is {self.cube_perimeter}.\n"
-                f"My volume is {self.cube_volume}.")
+                f"My area is {round(self.cube_area)}.\n"
+                f"My perimeter is {round(self.cube_perimeter)}.\n"
+                f"My volume is {round(self.cube_volume)}.")
 
-    def __repr__(self):
+    def __repr__(self)->str:
         """Developer-friendly representation"""
         return (f"Cube(cube_sides = {self._cube_side}, x = {self.x}, y = {self.y}, z = {self.z})\n"
                 f"Area = {self.cube_area}\n"
