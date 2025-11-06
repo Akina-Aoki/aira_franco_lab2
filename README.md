@@ -35,6 +35,9 @@ Task 2:
 ├── sphere.py           # Cube child class<br>
 ├── test_sphere.py      # Unit tests<br>
 
+# UML
+![alt text](<UML Lab 2.jpeg>)
+
 
 
 ___________________________________________________________________________________________________________________________________________________
@@ -119,20 +122,6 @@ Perimeter is only used as a tiebreaker when areas match.
 | **Comparing rectangles**   | Equal, larger, smaller comparisons            |
 
 
-## Shape2DPlotter()
-
-| Step  | Action                 | Location in Code         | Description                                                                                                      |
-| ----- | ---------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| **1** | Create plotter object  | `__init__()`             | Initializes an empty list named `shapes` for storing all added shapes.                                           |
-| **2** | Add shapes             | `add_shape()`            | Appends a `Rectangle` or `Circle` object to the internal list.                                                   |
-| **3** | Start plotting         | `plot_all()`             | Creates the `matplotlib` figure and axes for drawing.                                                            |
-| **4** | Iterate through shapes | Loop inside `plot_all()` | Goes through each stored shape in the list.                                                                      |
-| **5** | Detect shape type      | `hasattr()` checks       | If object has `width` and `height`, it is treated as a rectangle; if it has `radius`, it is treated as a circle. |
-| **6** | Draw rectangle         | `_plot_rectangle()`      | Creates a `matplotlib.patches.Rectangle` object, adds it to axes, and labels the area.                           |
-| **7** | Draw circle            | `_plot_circle()`         | Creates a `matplotlib.patches.Circle` object, adds it to axes, and labels the area.                              |
-| **8** | Format plot            | End of `plot_all()`      | Sets equal axis scale, adds title, axis labels, and grid lines.                                                  |
-| **9** | Display result         | `plt.show()`             | Displays all shapes together in one coordinate grid.                                                             |
-
 ________________________________________________________________________________________________________________________________________________
 # Task 2: Cube and Sphere
 
@@ -175,19 +164,6 @@ ________________________________________________________________________________
 | **Comparing cubes**     | Equal cubes                    | same side = equal              | Should return **True**                                      |
 |                         | Bigger vs smaller cube         | side 3 vs side 2               | Should return **True** for cube with larger volume          |
 |                         | Same volume but different area | e.g. 3 vs 2.99 (slight diff)   | Should compare by **area as tiebreaker**                    |
-
-
-
-
-
-
-## Sphere (finalize the uml later *)
-| Attribute | Type  | Description                   | Source       |
-| --------- | ----- | ----------------------------- | ------------ |
-| `x`       | float | inherited, x-coordinate       | `Geometry`   |
-| `y`       | float | inherited, y-coordinate       | `Geometry`   |
-| `z`       | float | new, z-coordinate (for 3D)    | Sphere class |
-| `_radius` | float | private, radius of the sphere | Sphere class |
 
 
 
@@ -276,14 +252,3 @@ https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html#matplot
 
 - ax.autoscale()
 https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.autoscale.html#matplotlib.axes.Axes.autoscale
-
-### Plotting Cube 3D
-
-- Make 3D interactive Matplotlib plot in Jupyter Notebook
-https://www.geeksforgeeks.org/python/make-3d-interactive-matplotlib-plot-in-jupyter-notebook/
-
-- Axes 3D
-https://matplotlib.org/stable/api/toolkits/mplot3d/axes3d.html#mpl_toolkits.mplot3d.axes3d.Axes3D 
-
-- mplot3d
-https://scipy-cookbook.readthedocs.io/items/Matplotlib_mplot3D.html
