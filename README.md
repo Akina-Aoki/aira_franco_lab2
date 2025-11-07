@@ -38,7 +38,7 @@ Task 2:
 ├── test_sphere.py      # Unit tests<br>
 
 # UML
-![alt text](<UML Lab 2.jpeg>)
+assets/UML Lab 2.jpeg
 
 
 
