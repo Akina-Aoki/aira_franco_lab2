@@ -2,6 +2,7 @@
 A child class representing Cube
 
 Attributes:
+* self: reference back to the current instance of the class
 - x : read-only (inherited from Geometry)
 - y : read-only (inherited from Geometry)
 - z : read-only (Ploymorphism)

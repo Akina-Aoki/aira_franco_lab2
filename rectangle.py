@@ -2,6 +2,7 @@
 A child class representing Rectangle
 
     Attributes:
+    * self: reference back to the current instance of the class
     - x : read only (inherited)
     - y : read only (inherited)
     - width (float): read only 
@@ -58,7 +59,7 @@ class Rectangle(Geometry):
         validate_positive_number(height)
     
         # assign instances last unique to rectangle
-        self._width = width
+        self._width = width   # save as private and internal attribute
         self._height = height
 
         

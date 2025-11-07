@@ -1,6 +1,4 @@
-import math
 from numbers import Number
-from util import validate_number, validate_positive_number
 
 
 
@@ -23,29 +21,32 @@ class Geometry:
     - object info using __str__ and __repr__
     """
 
-    def __init__(self, x:float, y:float):
+    def __init__(self, x:float, y:float):  # constructor
         """
         Create Geometry objects with x and y attributeas
         Validate that value is a number using is instance and one line for loop
         """
         if not all (isinstance(value, Number) for value in (x,y)):
             raise TypeError("x and y must be a number")
-        self._x = x
+        self._x = x   # Encapsulation: save as private and internal attribute
         self._y = y
 
 # -------------------------
 #        PROPERTIES
 # -------------------------
-    """x and y representing the center / origin position of the object"""
+    """x and y representing the center / origin position of the object
+    Get an error if someone tries to change thr set values.
+    Keeps it stable and predictable
+    the _ means to access the private attribute"""
 
-    # read only x property
+    # read only x property decorator
     @property
-    def x(self)->Number:
+    def x(self)->float:
         return self._x
     
-    # read only y property
+    # read only y property decorator
     @property
-    def y(self)->Number:
+    def y(self)->float:
         return self._y
 
 

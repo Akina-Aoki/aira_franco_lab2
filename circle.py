@@ -2,6 +2,7 @@
 A child class representing Circle
 
     Attributes:
+    * self: reference back to the current instance of the class
     - x : read only (inherited)
     - y : read only (inherited)
     - radius (float) : read only 
@@ -22,15 +23,13 @@ A child class representing Circle
     - object info using __str__ and __repr__
 """ 
 
-
-
 from geometry import Geometry
 from util import validate_positive_number
 import math
 from numbers import Number
 
-class Circle(Geometry):
-    def __init__(self, x:float = 0, y:float = 0, radius:float = 1):
+class Circle(Geometry): #<- inheritance 
+    def __init__(self, x:float = 0, y:float = 0, radius:float = 1): 
         """
         - Validates that radius is a number imported from (validate_positive_number from util.py).
         - Inherit with super().__init__() to reuse code from Geometry.
@@ -41,29 +40,30 @@ class Circle(Geometry):
 
         - radius set to 1 as default, if not set in manual testing
         - no circle that radius = 0 exists or below, ValueError
+        - EXTENDING the class with radius
         """
-        super().__init__(x,y)
-        # validate radius
-        validate_positive_number(radius)
+        super().__init__(x, y) # initializer
+        # validate radius with modularization
+        validate_positive_number(radius) 
         # assign attributes
-        self._radius = radius
+        self._radius = radius  # save as private and internal attribute
         
     # -------------------------
     #        PROPERTY
     # -------------------------
     @property
     def radius(self) -> Number: 
-        """ radius read-only, cannot change radius"""
+        """ Stored Attribute: radius read-only, cannot change radius"""
         return self._radius
     
     @property
     def area(self) -> Number:
-        """calcualtes area, formula:  π * r^2 """
+        """Computed Property: calcualtes area, formula:  π * r^2 """
         return math.pi * self._radius ** 2
     
     @property
     def perimeter(self) -> Number:
-        """calcualtes perimeter (circumference), formula: 2 * π * r"""
+        """Computed Property: calcualtes perimeter (circumference), formula: 2 * π * r"""
         return 2 * math.pi * self._radius
 
 
@@ -84,7 +84,8 @@ class Circle(Geometry):
     # --------------------------
     #      REPRESENTATION
     # --------------------------
-    
+    """Overwrtting: providing a new version of the representations method"""
+
     def __str__(self) -> str:
         """User-friendly text output"""
         return (
