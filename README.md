@@ -1,4 +1,6 @@
 # aira_franco_lab2
+# Video Link: https://stise-my.sharepoint.com/:v:/g/personal/aira_franco_stud_sti_se/EXht_Bw055NOn1rnmicQ0vkBfpYCSQiJEAuZWkqsNJdWfg?e=voYlRn
+
 # Demonstrations of these OOP concepts:
 
 - Encapsulation → using private attributes (_attribute and __attribute).
