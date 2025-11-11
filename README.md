@@ -3,17 +3,19 @@
 
 This project demonstrates object-oriented programming (OOP) principles through a comprehensive Python library for 2D and 3D geometric shapes. Key concepts illustrated include encapsulation (with private/protected attributes), validation, error handling, inheritance, and polymorphism—implemented across classes for circles, rectangles, cubes, and spheres.
 
-**Highlights:**
-
-Reusable validation utilities to enforce input correctness across all shape types.
-Parent-child class structure (Geometry → Circle, Rectangle, Cube, Sphere), showcasing inheritance and method overriding.
-Custom comparison operators based on area or volume, with perimeter/area tiebreakers, demonstrating operator overloading and polymorphism.
-Modularity: Clean separation of classes and test scripts to enable unit testing (with pytest) and interactive/manual validation in Jupyter notebooks.
-Plotting tools for visualizing 2D shapes with Matplotlib, plus clear UML diagrams for project structure.
-The repository includes comprehensive tests, documentation, and references for further reading.
-Ideal as an educational resource or OOP reference for geometric modeling and code architecture in Python.
+**Highlights:**<br>
+<br>
+Reusable validation utilities to enforce input correctness across all shape types.<br>
+Parent-child class structure (Geometry → Circle, Rectangle, Cube, Sphere), showcasing inheritance and method overriding.<br>
+Custom comparison operators based on area or volume, with perimeter/area tiebreakers, demonstrating operator overloading and polymorphism.<br>
+Modularity: Clean separation of classes and test scripts to enable unit testing (with pytest) and interactive/manual validation in Jupyter notebooks.<br>
+Plotting tools for visualizing 2D shapes with Matplotlib, plus clear UML diagrams for project structure.<br>
+The repository includes comprehensive tests, documentation, and references for further reading.<br>
+Ideal as an educational resource or OOP reference for geometric modeling and code architecture in Python.<br>
 
 <br>
+![UML Lab 2](https://github.com/user-attachments/assets/6e734fb0-8cdf-47f6-851b-b6e9cf16a1da)
+
 
 <br>
 geometry_lab2/<br>
@@ -256,3 +258,4 @@ https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html#matplot
 
 - ax.autoscale()
 https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.autoscale.html#matplotlib.axes.Axes.autoscale
+<br>
