@@ -1,17 +1,19 @@
-# aira_franco_lab2
-# Video Link: https://stise-my.sharepoint.com/:v:/g/personal/aira_franco_stud_sti_se/EXht_Bw055NOn1rnmicQ0vkBfpYCSQiJEAuZWkqsNJdWfg?e=voYlRn
+## aira_franco_lab2
+# Project: Geometry OOP Lab — Class Hierarchies, Operator Overloading, and 2D/3D Shape Modeling in Python
 
-# Demonstrations of these OOP concepts:
+This project demonstrates object-oriented programming (OOP) principles through a comprehensive Python library for 2D and 3D geometric shapes. Key concepts illustrated include encapsulation (with private/protected attributes), validation, error handling, inheritance, and polymorphism—implemented across classes for circles, rectangles, cubes, and spheres.
 
-- Encapsulation → using private attributes (_attribute and __attribute).
+**Highlights:**
 
-- Validation and error handling → checking types and values inside setters or constructors.
+Reusable validation utilities to enforce input correctness across all shape types.
+Parent-child class structure (Geometry → Circle, Rectangle, Cube, Sphere), showcasing inheritance and method overriding.
+Custom comparison operators based on area or volume, with perimeter/area tiebreakers, demonstrating operator overloading and polymorphism.
+Modularity: Clean separation of classes and test scripts to enable unit testing (with pytest) and interactive/manual validation in Jupyter notebooks.
+Plotting tools for visualizing 2D shapes with Matplotlib, plus clear UML diagrams for project structure.
+The repository includes comprehensive tests, documentation, and references for further reading.
+Ideal as an educational resource or OOP reference for geometric modeling and code architecture in Python.
 
-- Inheritance → several examples of parent and child classes.
-
-- Polymorphism → overridden methods across child classes.
-
-- Modularity → creating small files or sections with reusable functions or methods.
+<br>
 
 <br>
 geometry_lab2/<br>
