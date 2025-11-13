@@ -1,0 +1,4 @@
+product_id,product_name,brand_id,category_id,model_year,list_price
+1,Mountain X1,1,1,2024,1200.00
+2,Road Racer,2,2,2024,1500.00
+3,E-Bike Pro,3,3,2024,2500.00
