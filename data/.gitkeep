@@ -1,0 +1,12 @@
+# This file ensures the data directory is tracked by git
+# Place your CSV files here:
+# - brands.csv
+# - categories.csv
+# - customers.csv
+# - joined_table.csv
+# - order_items.csv
+# - orders.csv
+# - products.csv
+# - staffs.csv
+# - stocks.csv
+# - stores.csv

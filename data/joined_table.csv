@@ -1,0 +1,4 @@
+order_id,customer_name,product_name,quantity,total_price
+1,John Doe,Mountain X1,1,1080.00
+1,John Doe,Road Racer,1,1425.00
+2,Jane Smith,E-Bike Pro,1,2500.00
